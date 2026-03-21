@@ -1,0 +1,440 @@
+{
+  "name": "Criação de Drive",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "=[ACELERAÇÃO -  {{ $json.body.company.name }}]",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -112,
+        -336
+      ],
+      "id": "65b974d4-2dd5-44c2-ac34-090f18f0d631",
+      "name": "Create folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ggg4yAk0IkAaLmvv",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "testedrive",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -944,
+        0
+      ],
+      "id": "00090a56-0637-4e4a-8632-a5a88e333a0b",
+      "name": "Webhook",
+      "webhookId": "d0f1dae7-f6fa-4019-83d4-16e6e4f0ae49"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c35ee261-c0f1-426a-a0a0-ce77645cb8cd",
+              "leftValue": "={{ $json.body.deal.status }}",
+              "rightValue": "won",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -752,
+        0
+      ],
+      "id": "118e783e-fe7a-403b-9768-c50b514011ad",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "[CENTRAL DE TREINAMENTOS]",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {
+          "folderColorRgb": "#0ABF00"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        48,
+        -336
+      ],
+      "id": "db6f7fa7-abd4-4727-a9e1-b0dea4fd0754",
+      "name": "Create folder1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ggg4yAk0IkAaLmvv",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.deal.phase }}",
+                    "rightValue": "PROPOSTA",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "dbdb720d-5698-4df1-8698-ff2eee40d142"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f898cf74-b1fc-4124-bbe6-c9e7650f6ec8",
+                    "leftValue": "={{ $json.body.deal.phase }}",
+                    "rightValue": "DIAGNÓSTICO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -544,
+        0
+      ],
+      "id": "71c40bc4-ff55-474e-98da-0d522321bc30",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "=[MÁQUINA -  {{ $json.body.company.name }}]",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root folder)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -128,
+        80
+      ],
+      "id": "10b3e8ad-1d65-4bfc-9a79-f22c0b11cd26",
+      "name": "Create folder2",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ggg4yAk0IkAaLmvv",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "[CENTRAL DE TREINAMENTOS]",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {
+          "folderColorRgb": "#0ABF00"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        32,
+        80
+      ],
+      "id": "e6ef6ee9-d60a-44ed-8d6c-054ef36eee8d",
+      "name": "Create folder3",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ggg4yAk0IkAaLmvv",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -832,
+        -624
+      ],
+      "id": "4af14424-024b-4eca-8b65-4144b6cda9d7",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "1CaLle_tVTrW4-KOZ2RoZJi-mp-AMbvRg",
+            "mode": "list",
+            "cachedResultName": "TRANSCRIÇÕES PYTHON",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/1CaLle_tVTrW4-KOZ2RoZJi-mp-AMbvRg"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        256,
+        -336
+      ],
+      "id": "f391fcb3-492b-4aa4-93ce-231b94d13a24",
+      "name": "Search files and folders",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ggg4yAk0IkAaLmvv",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Aceleração\n",
+        "height": 304,
+        "width": 944
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -416
+      ],
+      "id": "4cbc8227-1334-4114-b9ef-a2b00a93eb99",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "copy",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "name": "={{ $json.name }}",
+        "sameFolder": false,
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1CcTEpT_zPx-yEkcFRK7j4PpbZkLcHHO2",
+          "mode": "list",
+          "cachedResultName": " Matheus Lenci",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1CcTEpT_zPx-yEkcFRK7j4PpbZkLcHHO2"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        448,
+        -336
+      ],
+      "id": "7ecd1c7b-a0a2-44d6-8a97-68fb45614aec",
+      "name": "Copy file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "ggg4yAk0IkAaLmvv",
+          "name": "Google Drive account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create folder": {
+      "main": [
+        [
+          {
+            "node": "Create folder1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Create folder",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create folder2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create folder2": {
+      "main": [
+        [
+          {
+            "node": "Create folder3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create folder1": {
+      "main": [
+        [
+          {
+            "node": "Search files and folders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search files and folders": {
+      "main": [
+        [
+          {
+            "node": "Copy file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "971aaa26-fe4d-4fc6-b2a0-6a244328fddc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49eedb587b9b112cdc30dbb3526948bb66d8d49f2489a88def630e2ae66f6286"
+  },
+  "id": "G0DbmKmK0NmsXULS",
+  "tags": []
+}

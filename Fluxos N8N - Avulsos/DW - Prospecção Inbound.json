@@ -1,0 +1,344 @@
+{
+  "name": "DW - Prospecção Inbound",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dw_wpp",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -656,
+        -128
+      ],
+      "id": "fc381655-d93d-43f8-b724-bcc25bb070ef",
+      "name": "Webhook",
+      "webhookId": "c6f93b1f-17b6-4942-a79b-ea583b78e3ce"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d44e2330-4e5c-43db-8311-737d4a2453ed",
+              "name": "criado_em",
+              "value": "={{ $json.body.event.timestamp }}",
+              "type": "string"
+            },
+            {
+              "id": "3799d2bd-b0c7-46f1-84f6-516f15a4298e",
+              "name": "status",
+              "value": "={{ $json.body.lead.status }}",
+              "type": "string"
+            },
+            {
+              "id": "2b318653-e3cf-4436-a100-f221c6ff3de0",
+              "name": "name",
+              "value": "={{ $json.body.lead.name }}",
+              "type": "string"
+            },
+            {
+              "id": "cfb293aa-8c59-41f8-8dc3-1f3b88c3d1be",
+              "name": "id",
+              "value": "={{ $json.body.data.key.id }}",
+              "type": "string"
+            },
+            {
+              "id": "402cc756-05e3-4c8f-8107-6bd421a4de28",
+              "name": "strategy",
+              "value": "={{ $json.body.lead.strategy }}",
+              "type": "string"
+            },
+            {
+              "id": "b289bbe0-74a3-45cf-af6b-efcf2bfa66d1",
+              "name": "stage",
+              "value": "={{ $json.body.lead.stage }}",
+              "type": "string"
+            },
+            {
+              "id": "4d9711a8-bcb9-4347-ba74-dc43d9569c90",
+              "name": "name",
+              "value": "={{ $json.body.person.first_name }}",
+              "type": "string"
+            },
+            {
+              "id": "af5ec647-31fa-42ab-a668-d86766720c87",
+              "name": "role",
+              "value": "={{ $json.body.person.role }}",
+              "type": "string"
+            },
+            {
+              "id": "31df0ef8-52ea-4be9-bb55-03001263a502",
+              "name": "linkedin",
+              "value": "={{ $json.body.person.linkedin }}",
+              "type": "string"
+            },
+            {
+              "id": "24977ea3-f310-44e2-bdbb-fd73e980d734",
+              "name": "phone",
+              "value": "={{ $json.body.person.phones[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "daf7d278-0faf-48f0-a99f-c2a991f46d62",
+              "name": "mail",
+              "value": "={{ $json.body.person.emails[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "775245eb-2c98-440f-af7d-6ccd22e73868",
+              "name": "company",
+              "value": "={{ $json.body.company.name }}",
+              "type": "string"
+            },
+            {
+              "id": "5b605120-3913-4c02-89d7-de4aa64b211e",
+              "name": "industry",
+              "value": "={{ $json.body.company.industry }}",
+              "type": "string"
+            },
+            {
+              "id": "47987940-98ff-4915-81da-c5be8323693d",
+              "name": "id",
+              "value": "={{ $json.body.lead.id }}",
+              "type": "string"
+            },
+            {
+              "id": "47095614-ea9c-4e6a-b1d3-bc07ec4a3666",
+              "name": "lead",
+              "value": "={{ $json.body.lead.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        -128
+      ],
+      "id": "d2f952af-6c0a-471e-bf8a-d4a06f827ca8",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=recebe as Informações recebidas do set fields via webhook e envie uma mensagem de atendimento para o {{ $json.phone }} recebido, utilizando do Playbook fornecido e das variáveis abaixo.\n\nO contato é o /a {{ $json.name }}, da empresa {{ $json.company }}, tem o linkedin {{ $json.linkedin }} é {{ $json.role }}, chegou como um lead {{ $json.strategy }}. do segmento de {{ $json.industry }}.\n\nBusque pelo site da {{ $json.company }} para tentar entender mais do perfil. ",
+        "options": {
+          "systemMessage": "=Você é um Agente SDR da Dealwise. No prompt do usuário você receberá informações sobre o lead.\n\nAbaixo os roteiros e processos.\n\n\nLead Chega - DIA 1 → Whatsapp 1 → Ligação\n\nWhatsapp D1\n\nOlá [NOME], tudo bem?\n\nMe chamo Winícius, falo do Hackeando Processos. Estou entrando em contato porque recebemos seu contato para conhecer mais sobre o Hackeando e nossas soluções.\n\nO objetivo do meu contato é te explicar inicialmente sobre como poderíamos ajudar, entendendo um pouco sobre o seu negócio e operação comercial.\n\nQual o melhor momento entre hoje e amanhã para conversarmos?\n\nWhatsapp D2\n\nBoa tarde, [NOME]. Tudo bem?\n\nGostaria de conversar sobre o seu interesse no Hackeando Processos e entender como podemos te ajudar.\n\nImagino que esteja na correria, por isso queria marcar um horário para conversarmos com calma.\n\nVocê tem alguma preferência de horário para essa ligação?\n\nWhatsapp D3\n\nOi, [NOME], tudo bem? \n\nTentei te ligar agora pouco para te explicar melhor como o Hackeando acelera comercialmente negócios como o seu, e entender se alguma de nossas soluções faz sentido para você.\n\n[NOME], qual seria o melhor momento para uma ligação?\nWhatsapp D5\n\nBoa tarde, [NOME]! Tudo certo?\n\nAcabou que não conseguimos conversar sobre seu interesse no Hackeando Processos. \n\nComo você está nessa semana? Conseguimos marcar um papo?\n\nDe qualquer forma, se não fizer sentido no momento, ficamos à disposição para que em um melhor momento voltemos a nos falar!\n\n\n==========================================================\nPô Wini, o que o Hackeando faz? \n\n-> Bacana, [NOME], vou te contar mais sim! Você me fala hoje qual a sua empresa? E como vocês estão em relação ao time comercial? Assim te explico de forma mais direcionada!\n\n\nPitch de Explicação via mensagem \n\nSomos uma aceleradora comercial com solução completa para operações de vendas.\nEm um cenário em que vocês estão estruturando a operação comercial, conseguimos, junto de vocês, definir a melhor estratégia de aquisição e organização do processo comercial; Além do recrutamento de uma equipe de vendas e uma plataforma completa de sales engagement, engajando o lead desde a pré-venda, venda e pós-venda, fazendo a gestão do processo comercial.\n\nSe você já possui uma operação comercial nós podemos ajudar com um processo de otimização através de consultoria ou assessoria.\n\nAlém disso, temos uma solução que te auxilia a gerar leads enriquecidos que funcionam para alguns perfis de cliente que vocês queiram prospectar ativamente. \n\nEm resumo, o Hackeando como Aceleradora Comercial consegue te ajudar da seguinte forma:\n\nEstruturando ou otimizando a sua operação de prospecção e vendas: implementando novas estratégias e construindo processos.\nE se necessário te ajudando na geração de leads e recrutamento de profissionais. \n\nLigação\n\nOi, {{ pessoa_primeiro_nome }}, aqui quem fala é o Anderson do Hackeando Processos. Tudo bem?\n\n\n{{ pessoa_primeiro_nome }}, vi que você preencheu o nosso formulário // enviou mensagem no nosso instagram em cima do nosso anúncio.\n\n\nSeguinte, {{ pessoa_primeiro_nome }}, o intuito dessa ligação é entender um pouco sobre o seu cenário, seu negócio e sua necessidade. A partir daí eu te conto sobre como podemos te auxiliar e analisamos juntos se faz sentido continuar, beleza?\n\n\nCaso faça sentido, agendamos uma conversa com nosso especialista no assunto. Tudo bem? \n\n\nAlinhar a duração da ligação - entre 10 e 15 minutos.\n\n\nRAPPORT - utilizar a localização do lead (DDD) ou algum outro ponto de interesse notado.\n\n\nBacana, {{ pessoa_primeiro_nome }}, vamos fazer o seguinte, até para evitar de você perder seu tempo com a gente, caso não faça sentido. Gostaria de fazer algumas perguntas sobre o seu negócio, topa? \n\n\n[QUALIFICAÇÃO]\n\n\n1.\nO que te motivou a entrar em contato com a gente?\n\nE hoje você fala de qual empresa? É diretor, dono….\n\nMe conta um pouco sobre a empresa de vocês? Qual o modelo de negócios de vocês, trabalham com B2B ou B2C? \n2.\nBacana, qual o mercado de atuação de vocês?\nQual o produto/solução de vocês? \nQual o ticket médio de venda de vocês? \n\n3.\nComo está a estrutura comercial de vocês?\nTem quantas pessoas na equipe hoje? Essas pessoas atuam em quais funções?\nComo vocês geram demanda hoje? Indicação, prospecção, marketing….\n4.\nQuais têm sido os maiores desafios no seu negócio?\nO que você busca em uma solução dessas? \n\n\n\n\n\n\n\nO que o Hackeando faz - pitch de apresentação:\n\nHoje o Hackeando Processos é uma aceleradora comercial que assume toda a gestão e inteligência comercial do cliente, colocando o processo e a operação para funcionar dentro do negócio do próprio cliente. O Hackeando acredita que comercial não se terceiriza, já que é o coração da empresa, sendo extremamente importante haver essa gestão do setor comercial dentro de casa, já que ao terceirizar, se perde muito em questões como ajustes, feedback da execução além de correr o risco de perder todo esse conhecimento ao encerrar a atuação com a empresa terceirizada.\nImagina um cenário de terceirização, que atuou em seu negócio por 1 ano. Depois desse 1 ano vocês resolvem encerrar a parceria: nesse caso os funcionários responsáveis pelo seu processo comercial se foram junto com a empresa, não deixando nenhum tipo de base de conhecimento para poder manter a operação.\nPor isso o Hackeando Processos atua na estruturação e gestão de todo processo comercial como um núcleo dentro da empresa do cliente: seja através de da estruturação e otimização de processos de venda, atuando como assessoria (...) e no recrutamento de profissionais de vendas, seja também na geração de leads enriquecidos e também auxiliando toda essa operação com uma plataforma de CRM, que engloba e facilita todo esse processo comercial.\n\n5.\nImagino então, que no momento o principal objetivo para o comercial seja [GANCHO COM A RESPOSTA ANTERIOR], certo?\nAté para eu ter uma melhor noção, olhando para as metas de vocês, [Nome], qual a meta de faturamento deste ano? Pergunto pois o Hackeando possui diversos especialistas e um pode fazer mais sentido para o seu cenário do que outro, então gostaria de dar o melhor direcionamento possível.\n\n\n6. [nome], consegui entender o que eu precisava do seu negócio.\n\nSe qualificado: Em cima do que você me contou, a gente consegue te ajudar sim. O que eu gostaria agora, seria agendar um papo seu com um especialista, assim vamos entender melhor sua necessidade e te apresentar algumas ideias de solução.\nPelo que vi aqui, nosso especialista com mais experiência no seu mercado é o [nome], a agenda dele está bem apertada para essa semana, mas consigo agendar dia X ou dia Y às Z horas, como você está?\nPodemos fechar essa agenda, [nome]? \n\nCaso não o lead não possa →entender a agenda que ele tem disponibilidade.\nEstou te enviando o convite agora, peço que já aceite para confirmarmos a reunião, ok? \nEm breve o/a [Nome] irá entrar em contato com você via whatsapp para se apresentar.\n\n[nome], você acha que teria mais alguém interessante para adicionarmos na conversa?\n\nObjeções Comuns:\nMe explica melhor do Hackeando e das soluções de vocês: Legal, [nome]. \n\nHoje nossos serviços tem algumas frentes principais:\nSoluções de Consultoria/Assessoria: onde entendemos o seu negócio via um diagnóstico e mapeamento completo de processos. Arquitetamos toda a sua operação desde a estratégia, captação de leads, prospecção até o fechamento. E implementamos com a sua equipe, acompanhando continuamente a sua operação.\n\nDealwise: a nossa ferramenta, é uma ferramenta completa para a sua operação comercial. Temos hoje o módulo de prospecção, CRM e de Onboarding. E nosso principal diferencial na ferramenta é garantir a inserção de todos os seus processos dentro dela, e criando workflows/esteiras de trabalho automatizadas e conectadas de ponta a ponta. Assim garantimos que o seu processo seja replicável, padronizado e mensurável.\n\nRecrutamento: o nosso trabalho de recrutamento é feito por especialistas em operações comerciais, assim conseguindo ter maior profundidade e especialização na avaliação de critérios técnicos e comportamentais, sendo assim seja o início de uma área de pré-venda, recrutando BDRs que tenham fit com seu negócio e solução ou um Executivo de Contas já com experiência comprovada no seu mercado garantimos a reposição desse candidato no caso de saída.\n\nB2B Data: geramos leads higienizados para a sua operação, diferente de outras soluções de mercado, nós não somos uma ferramenta onde você define seus filtros e faz o download de uma lista. Hoje a nossa metodologia envolve uma parceria com mais de 20 ferramentas de mercado além de um processo de higienização feito por um time de LDRs que validam todos os dados entregues: telefone, e-mail, redes sociais e perfil da empresa em relação ao seu ICP.\n\nTalvez tercerizar:  bacana, [nome], entendi que hoje a gente conseguiria te ajudar, mas você está buscando de fato uma solução de terceirização. Prefiro ser bem sincero contigo, hoje não fazemos esse tipo de processo por acreditar que a maioria dos negócios que têm processos de vendas complexos precisam de que o motor do seu comercial seja interno. Você estaria aberto a conhecer mais desse modelo?\n\nCerteza de terceirização: bacana, entendi o que você busca. Dentro das soluções da Hackeando acredito que não conseguimos te atender terceirizando sua operação, porque hoje nossas soluções tem como objetivo criar uma célula especializada dentro do seu negócio. Mantendo o que é mais importante para o seu crescimento dentro da sua casa.\n\nBad Fit:\nEmpresa com modelo B2C, com baixo valor agregado.\nBad fit, Ex: Loja de material de construção, Varejo alimentício…\nBom fit, Ex: B2C loja de joias, Agência de Intercâmbios, Faculdades fazem super sentido;\nLead de qualquer segmento, que é uma EUpresa. Desqualificado por budget.\nLead focado em terceirização\nEmpresa com modelo self-service.\n\nSe não qualificado: \nOpção 1: EUpresas/empresas muito pequenas - Desqualificar por budget.\nOpção 2: Sem fit mesmo, B2C - posicionar o Hackeando como especialista em B2B e não conseguimos ajudar da melhor forma.\n\n\n\n\n\n\n\nCenários que a gente atende:\n\nEmpresa que já cresceu, tem em média uns a partir de 10 funcionários e cresceu na base da indicação e relacionamento e está estagnada.\nEmpresas que já rodam um processo comercial mais estruturado, mas não são eficientes.\nEmpresas que já tem um processo de vendas rodando, com equipe mas não tem demanda.\nEmpresa que já tem uma operação, tá legal, mas tá insatisfeita com ferramentas atuais.\n\nSoluções\n\nAssessoria Contínua: \nAssessment da operação\nArquitetura do processo\nImplementação e Onboarding\nOtimização - não entra tanto em gestão\n4K/mês\n\nHouse: Pacote mais completo, voltado para a estruturação de um processo comercial mais eficiente e capacitação da equipe.\nAssessment da operação\nArquitetura do processo\nImplementação e Onboarding\nHouse: gestão de pessoas e gestão de processos - 3h semanais\n3,5K/mês\n\nAceleração: \nAssessment da operação\nArquitetura do processo\nImplementação e Onboarding\nAceleração: gestão de processos - 1,5h semanal\n2,5K/mês\n\nDealwise Solution: Solução voltada para vender a plataforma dealwise em conjunto com treinamentos do time comercial. 4 Encontros além do Onboarding para estruturação do processo do cliente.\n11K - 5K de Implementação e Consultoria e 12x de 500 de licenciamento\n\nDealwise: Solução voltada para vender a plataforma dealwise para empresas que buscam uma ferramenta mais eficiente de prospecção e CRM.  Diferencial: Automatização de todo o workflow do comercial, puxando roteiros e todo o Playbook de forma a garantir que a equipe rode.\n8K - 2K de Implementação e 12x de 500 de licenciamento\n\nLanding Page\nhttps://materiais.hackeandoprocessos.com/formulario-interno\n\nMensagem de Confirmação de Agendamento.\n\nOlá Ramiro, boa tarde! Tudo certo?\n\nRamiro, obrigado pela conversa, consegui entender bem sobre a [EMPRESA] e o que você está buscando para aumentar os resultados comerciais de vocês!\n\nComo combinamos, nossa reunião com a Mary, nossa especialista, será no dia X às Y horas, logo ela irá se apresentar aqui no Whatsapp.\n\nRepassei os detalhes da ligação para ela, e acredito que será uma reunião bem legal. Ela já atuou no ramo de engenharia, inclusive com alguns clientes focados em energias renováveis. \n\nPedi a ela para compartilhar cases no segmento com você!\n\nSegmentação\n\nRegras de Segmentação\n\nPor Faturamento:\n\nBaesso: Acima de 6M por ano de faturamento\nFábio: Entre 3M e 6M\nVendedores de mercado sênior:  Até 3,5M\n\nPor Faixa de Funcionários :\n\nBaesso: Acima de 70 funcionários;\nFábio: Entre 40 a 70 funcionários;\nVendedores de mercado sênior:  Até 50 funcionários;\n\nClientes com faturamento superior a 10 milhões precisam ter crivo do Fábio ou Baesso, sendo que acima de 30 milhões precisam ter crivo do Baesso. \n\n\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        16,
+        -128
+      ],
+      "id": "d027c938-7596-461d-9f43-9f65f04dda8c",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        16,
+        112
+      ],
+      "id": "31b2cadc-f464-428b-9d0d-82003328fbec",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "JsxOv6MFdRLJQ8rt",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Edit Fields').item.json.phone }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.5,
+      "position": [
+        112,
+        112
+      ],
+      "id": "5042737f-d3c0-4efb-9d73-46d1ef58c216",
+      "name": "Redis Chat Memory",
+      "credentials": {
+        "redis": {
+          "id": "QJhbrdQT3v7qKIRt",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "evoapi",
+        "remoteJid": "={{ $('Edit Fields').item.json.phone }}",
+        "messageText": "={{ $('AI Agent').item.json.output }}",
+        "options_message": {
+          "delay": 1200,
+          "mentions": {
+            "mentionsSettings": {
+              "mentionsEveryOne": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        320,
+        -128
+      ],
+      "id": "5221967a-d58e-4fb0-8dd2-80b30cbd69cc",
+      "name": "Enviar texto",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3P4QVP9D7knRuQkW",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a1e3a766-f895-4b4c-9184-0f879339adfe",
+              "leftValue": "={{ $json.body.person.phones[0] }}",
+              "rightValue": "5532999009727",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "2212561a-9d4a-43f6-b246-d2e40532c9cb",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -432,
+        -128
+      ],
+      "id": "168623dd-7e56-4877-bcc8-ba484fc7113b",
+      "name": "Filter"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto": {
+      "main": [
+        []
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "9f03fde4-9451-4f33-bbe4-2d7c08ec29e4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49eedb587b9b112cdc30dbb3526948bb66d8d49f2489a88def630e2ae66f6286"
+  },
+  "id": "g3ZiMRlokYEc9nWm",
+  "tags": []
+}

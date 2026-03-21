@@ -1,0 +1,140 @@
+{
+  "name": "Abacate Pay",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -736,
+        -112
+      ],
+      "id": "5eb8c2e2-205b-43c6-a106-11f3a7d434a4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://sandbox.asaas.com/api/v3/pix/qrCodes/static",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "$aact_hmlg_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjU3Y2ZmZjFmLTRjOWUtNGRkZS1iNjhlLWQ1M2ZjYzkzMDA5Zjo6JGFhY2hfZjVmYTI3MDgtZTY0ZC00YjVlLTg0NzMtMTJlZGM2MWE5Nzli"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"addressKey\": \"{{ $json.address_key }}\",\n  \"description\": \"{{ $json.descricao_qr }}\",\n  \"value\": {{ $json.valor_cobranca }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        -192
+      ],
+      "id": "49e39cc1-4228-4702-b85b-144b7ba9b1c3",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"address_key\": \"3cc4b755-e19f-4381-8b9b-36493493ad84\",\n  \"descricao_qr\": \"Referente a produtos de tecnologia\",\n  \"valor_cobranca\": 149.90\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        32,
+        -224
+      ],
+      "id": "4bfdda5b-8d8b-475c-b5b2-3fa6d2ef3e60",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.abacatepay.com/v1/payments",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer abc_dev_A626bSfn3Xb2rrGWQFpzu2zR"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"value\": {{ $json.valor_cobranca }},\n    \"description\": \"{{ $json.descricao_cobranca }}\",\n    \"due_date\": \"{{ $now.toFormat('yyyy-MM-dd') }}\",\n    \"payment_methods\": [\n        \"PIX\"\n    ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        48,
+        128
+      ],
+      "id": "e416cb9c-8117-40f4-8534-6231f2e65c1a",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"valor_cobranca\": 49.99,\n  \"descricao_cobranca\": \"Pedido #ABCD-5678 - Produto Digital\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -176,
+        160
+      ],
+      "id": "003b2bab-34c6-46e8-be08-5a07a1bfc4b4",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "90868b64-eee6-45f6-bc89-8dcab9aea844",
+  "meta": {
+    "instanceId": "49eedb587b9b112cdc30dbb3526948bb66d8d49f2489a88def630e2ae66f6286"
+  },
+  "id": "5rsYCNCta3ylPun5",
+  "tags": []
+}

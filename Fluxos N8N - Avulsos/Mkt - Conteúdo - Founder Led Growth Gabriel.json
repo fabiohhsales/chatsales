@@ -1,0 +1,179 @@
+{
+  "name": "Mkt - Conteúdo - Founder Led Growth Gabriel",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "41ce8a09-5669-4343-a3da-2521897b3d1e",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a230b7b1-8166-4db8-96c0-4ab49e423e28",
+      "name": "Webhook",
+      "webhookId": "41ce8a09-5669-4343-a3da-2521897b3d1e"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "5fc5e123-ec73-4a96-8bdc-f4b36ed90295",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        768,
+        0
+      ],
+      "id": "bdb70a70-7826-40e3-879d-7b9f118d18d5",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        288,
+        208
+      ],
+      "id": "b53a6bdf-49f7-4777-8df9-16cd0d83c84f",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "MpsUtIXKZpjtufnO",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        560,
+        208
+      ],
+      "id": "618b7d83-819c-4451-92f5-fd4016afbaf8",
+      "name": "Create a document in Google Docs",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "XJOvew2ZTyYSUvtw",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Gere um post de LinkedIn com base na transcrição abaixo.\nO post deve refletir o estilo de Founder Led Growth, com alta autoridade, autenticidade e provocação inteligente — inspirado em Gabriel Machado (Dealwise), Ricardo Basaglia, Carolina Martins, Aline Sousa e Silene Rodrigues.\n\nO texto deve:\n- Começar com uma frase de impacto que provoque reflexão;\n- Desenvolver o raciocínio com storytelling breve (2–3 parágrafos) e aprendizados práticos;\n- Trazer 2–3 lições de liderança, cultura ou gestão de pessoas;\n- Encerrar com uma conclusão inspiradora e um CTA provocativo.\n\nExtensão: 230 a 420 palavras.\nTom: humano, inspirador e estratégico, com a voz de um CEO que lidera pelo exemplo.\nEvite jargões e clichês corporativos.\n\nCTAs possíveis:\n- “Sua cultura é viva — ou só bem redigida?”\n- “Seu time confia em você — ou apenas te obedece?”\n- “Cultura não se copia, se constrói. A sua tem propósito ou só rotina?”\n- “Quem segura o time quando o resultado não vem: o processo ou a cultura?”\n- “O que sua equipe diria sobre você se você não estivesse na sala?”\n- “Comenta CULTURA se você acredita que engajamento não se compra — se conquista.”\n\nTranscrição:\n[cole aqui a transcrição da fala do fundador]"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "3e1779a0-4d91-4ea9-b55c-963a15739bf9",
+      "name": "AI Agent - FLG - Gabriel"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent - FLG - Gabriel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent - FLG - Gabriel",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a document in Google Docs": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent - FLG - Gabriel",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent - FLG - Gabriel": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f8c07dca-2fe3-4c2d-9bc6-427380e3d2e9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49eedb587b9b112cdc30dbb3526948bb66d8d49f2489a88def630e2ae66f6286"
+  },
+  "id": "42dRWrdvO6U2vO8A",
+  "tags": [
+    {
+      "createdAt": "2025-10-03T20:11:06.059Z",
+      "updatedAt": "2025-10-03T20:11:06.059Z",
+      "id": "DsjcCSJVsR3y3KQc",
+      "name": "Mkt"
+    },
+    {
+      "createdAt": "2025-10-03T20:11:21.411Z",
+      "updatedAt": "2025-10-03T20:11:21.411Z",
+      "id": "HjDMdGM0heOKzF8v",
+      "name": "Content"
+    }
+  ]
+}

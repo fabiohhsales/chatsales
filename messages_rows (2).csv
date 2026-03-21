@@ -1,0 +1,168 @@
+id,chatwoot_message_id,conversation_id,content,content_type,sender_type,created_at,from_who,chatwoot_conversation_id,source_id
+52d1ce14-5586-402a-87ba-1929ce93a206,3633,fcfaa5d9-51f5-4b5c-9f65-dadb63e1df01,"Oi, Fabio! 😊
+
+Vi que você mandou ""teste"" agora há pouco.
+
+Se você estiver só testando o sistema, está tudo certinho por aqui. 
+
+Se quiser, posso aproveitar e já te ajudar com alguma informação sobre transplante capilar, valores ou até mesmo agendar uma avaliação. O que você gostaria de fazer agora?",text,User,2026-02-08 16:49:38.191+00,human,153,3EB03AB60696479665C7DD
+13951e6d-a417-478a-a2d1-ad5ee4e53867,3631,fcfaa5d9-51f5-4b5c-9f65-dadb63e1df01,teste,text,Contact,2026-02-08 16:49:21.658+00,lead,153,3EB0A1EEDB74CADED7AE6B
+032c653b-0569-4eba-9c46-b091d6ff0beb,3629,fcfaa5d9-51f5-4b5c-9f65-dadb63e1df01,jumsno,text,User,2026-02-08 16:23:05.906+00,human,153,3EB06559D749E9DF940BD6
+7cdbde9b-5573-4b82-a5fe-fa1447fd3d24,3627,fcfaa5d9-51f5-4b5c-9f65-dadb63e1df01,"Oi, Fabio! 👋
+
+Aqui é a Savarina, da equipe da clínica.
+
+Vi que um atendente humano entrou na conversa há pouco. Você prefere continuar falando com a nossa equipe humana ou posso te ajudar por aqui mesmo com alguma dúvida sobre transplante capilar, valores ou agendamento?",text,User,2026-02-08 15:52:47.559+00,human,153,3EB08E39B71FB4F7450BEA
+4fb562b6-d2b3-49fa-9259-16619b146c72,3626,fcfaa5d9-51f5-4b5c-9f65-dadb63e1df01,oi,text,Contact,2026-02-08 15:52:30.127+00,lead,153,3EB0C1B494C76FD3B1AE1C
+d577a3b8-e5bf-48b1-b9c9-ebb90532ffae,3625,fcfaa5d9-51f5-4b5c-9f65-dadb63e1df01,human in dere,text,User,2026-02-08 15:06:49.397+00,human,153,3EB04096598F1FCA8715A6
+4fbd52bd-ba7f-4390-bb59-1f28778d6cdd,999999999999,fcfaa5d9-51f5-4b5c-9f65-dadb63e1df01,"Perfeito, Fabio! 😄
+
+Recebi aqui o seu ""testando 22"".
+
+Se você estiver só testando o sistema, está tudo funcionando certinho. 
+
+Se quiser, já posso te ajudar com:
+- Informações sobre transplante capilar
+- Valores e formas de pagamento
+- Agendamento de avaliação
+
+Me conta o que você gostaria de saber ou fazer agora 😉",text,User,2026-02-08 15:05:57.304+00,ai,153,3EB0E2AD6459804DE884C1
+068caf3b-65e8-44f6-92cf-d4c6f9f6f145,3623,fcfaa5d9-51f5-4b5c-9f65-dadb63e1df01,testando 22,text,Contact,2026-02-08 15:05:57.304+00,lead,153,3EB08F3262F3589D1B4AC2
+88b50088-1f37-481d-a698-818fc6dd2bd9,999999999999,fcfaa5d9-51f5-4b5c-9f65-dadb63e1df01,"Oi, Fabio! 😊
+
+Vi aqui que você enviou: ""testando refaturação"".
+
+Me conta, por favor: você está só fazendo um teste de atendimento ou precisa de ajuda com alguma dúvida sobre transplante capilar, valores ou agendamento?
+
+Assim que você me disser o que precisa, eu já te ajudo da melhor forma possível.",text,User,2026-02-08 14:03:41.34+00,ai,153,3EB0F40C08CB36DF0356F9
+b717bec1-55c7-4419-8aa4-08fd5e7eecd6,3610,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,🚀 Connection successfully established!,text,Contact,2026-02-08 00:28:09.404+00,lead,1,
+96fe2415-34da-4f51-8ce1-ef240972447e,3609,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,🚀 Connection successfully established!,text,Contact,2026-02-08 00:21:59.443+00,lead,1,
+8026a5e8-76e6-40dd-9cbb-a2c52c65c5cf,3608,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,🚀 Connection successfully established!,text,Contact,2026-02-08 00:15:45.443+00,lead,1,
+f46d8633-abe9-4fa2-8e95-b08dfa96822d,3546,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,🚨 Mané Garrincha instance is connected.,text,Contact,2026-02-07 17:21:39.766+00,,,
+06364161-0d6f-41f1-9f56-59b0aded326a,3544,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,"⚡️QRCode successfully generated!
+
+Scan this QR code within the next 40 seconds.",text,Contact,2026-02-07 17:20:38.037+00,,,
+5f4f315b-d4fc-415d-bd7a-de9542774ea8,3542,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,"⚡️QRCode successfully generated!
+
+Scan this QR code within the next 40 seconds.",text,Contact,2026-02-07 17:19:53.186+00,,,
+2a772b20-5ca6-4294-94c1-93699bc96679,3540,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,"⚡️QRCode successfully generated!
+
+Scan this QR code within the next 40 seconds.",text,Contact,2026-02-07 17:19:08.036+00,,,
+2c380913-4829-4a23-b9fe-1b9e8d4d9e26,3538,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,"⚡️QRCode successfully generated!
+
+Scan this QR code within the next 40 seconds.",text,Contact,2026-02-07 17:18:37.343+00,,,
+f7a27c12-5076-4cf1-8d8a-25a691ecf866,3536,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,"⚡️QRCode successfully generated!
+
+Scan this QR code within the next 40 seconds.",text,Contact,2026-02-07 17:17:51.864+00,,,
+7ca7c2ca-fd09-439d-9415-06a65540812c,3534,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,"⚡️QRCode successfully generated!
+
+Scan this QR code within the next 40 seconds.",text,Contact,2026-02-07 17:17:06.955+00,,,
+62c4098d-181d-419f-aad9-c8f979b5e8a8,3532,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,"⚡️QRCode successfully generated!
+
+Scan this QR code within the next 40 seconds.",text,Contact,2026-02-07 17:16:21.853+00,,,
+26814277-3b19-425c-86bc-ba66a203822e,3530,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,"⚡️QRCode successfully generated!
+
+Scan this QR code within the next 40 seconds.",text,Contact,2026-02-07 17:15:37.752+00,,,
+37d66a37-2506-498e-b8ed-7bdd55133fed,3528,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,⚠️ Pessoal instance status: *closed*.,text,Contact,2026-02-05 11:59:28.776+00,,,
+2c394c45-1487-4795-ac4a-52ea734f2a86,3521,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,Se pá bater uma planilha de indicadores?,text,Contact,2026-02-05 11:52:09.918+00,,,
+5c42301a-9df2-4726-a094-18deefff6c3d,3520,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,Cara,text,Contact,2026-02-05 11:51:58.639+00,,,
+8fbee88a-908b-4d75-8534-7b3e8b5f5852,3512,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,Pensei de entrar só com Juliano e Renata pra ver como colocar em prática e medir as implementações,text,Contact,2026-02-05 11:46:54.825+00,,,
+17ef86f9-5706-46da-9cef-34cbd8dcd5d8,3511,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,Mas rola de adaptar kkkk,text,Contact,2026-02-05 11:46:20.871+00,,,
+02e693aa-ee90-49ba-8962-cb15406240ba,3510,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,Ta fico com eles esse horário,text,Contact,2026-02-05 11:46:11.732+00,,,
+8ca53e23-b0fe-4561-b46a-467c969594bd,3509,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,Ent,text,Contact,2026-02-05 11:46:03.812+00,,,
+12841614-0e9e-4860-b55a-fb2f24cd087a,3506,a8fc5213-201e-4c96-988e-a3549bde5c55,"Mano, não esquece de me mandar o áudio sobre a concepção da estratégia por favor",text,Contact,2026-02-05 11:43:16.265+00,,,
+0274d9bf-22e5-4397-9330-74c36b1afe80,3505,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,Tu consegue estar 10h com a metalife tb?,text,Contact,2026-02-05 11:41:51.207+00,,,
+ba33edaa-ef5a-46b2-8ede-47a36a7256bb,3504,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,Aqui,text,Contact,2026-02-05 11:41:34.52+00,,,
+52d9d4af-b001-4e1f-b227-61c13fe63882,3503,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,Fala cmg,text,Contact,2026-02-05 11:41:31.555+00,,,
+1816eb0c-9617-4e94-a1ba-2e0209d399c0,3502,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,Fi,text,Contact,2026-02-05 11:41:28.205+00,,,
+5c04bf1e-21c6-43f8-abd2-14c406e2b28e,3475,e8fd3b84-c32e-49f1-a1e0-a024e46f5bfe,Fala Rafa,text,User,2026-02-05 10:58:03.787+00,,,
+8978213d-bade-4f09-b7c2-90dbf00c1e45,3457,32c8569d-0b3b-4d36-ba32-c26b6a393abc,"Fabio, bom dia !
+Tudo bem ? 
+Tem 1 espaço pra mim hoje às 11h ?",text,Contact,2026-02-05 10:18:43.344+00,,,
+7fccd585-96bd-4cc1-b90d-e2af6029be15,3454,897b7460-bd68-4d16-a31b-5e9304c5f87d,Hj faço seu Pix ...rsrs,text,Contact,2026-02-05 10:05:01.259+00,,,
+82a8f4a0-b70a-4d96-b195-127a633e7ab1,3453,897b7460-bd68-4d16-a31b-5e9304c5f87d,"Bom e abençoado dia,filho ❤️",text,Contact,2026-02-05 10:04:54.693+00,,,
+e50778de-1cae-4fcd-8836-46e05b1933e4,3451,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,🚀 Connection successfully established!,text,Contact,2026-02-05 07:27:02.73+00,,,
+e9d8fafe-5cfe-469c-991d-0119345a14df,3448,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,🚀 Connection successfully established!,text,Contact,2026-02-05 03:11:26.104+00,,,
+4fe49d31-86b8-45e0-8178-5b330ab84b60,3360,7ec107b8-95a5-45c2-b61d-cd73dec4eb16,"E aí depois que a gente tiver esse bate-bola com com o Tiago, a gente pode buscar, né, o que que a gente vai precisar para pro Baixo. Eu só não quero o o Fabinho. Eu tô preocupado, cara, porque a gente já tá, né, já tá em fevereiro. Matou essa semana, a semana que vem é carnaval. Já acabou o mês, já é março. Sacou? Fevereiro. Janeiro agora já foi ruim, eu não tô querendo perder muito tempo, cara. Eu preciso acelerar isso aí. Preciso acelerar mesmo, sabe? Preciso, tem que botar para andar as definições, até porque a parte do planejamento estratégico para pra dia da mulher, pra pra, né, dos Instagrams da empresa, isso tá meio, tá difícil, tá parado, sabe? Eu tô com uma urgência danada, uma ansiedade. Tenho batido bola com o meu irmão aqui todo dia, mais de uma, duas horas todo dia, matutando o que que a gente vai fazer, entendeu? Tô querendo uma, uma, uma visão de fora, de uma galera que tem mais experiência de mercado, entendeu? Que tem uma visão de outras empresas, de outros números, o que que ele, né, sabe, algo assim pra gente conseguir deixar isso bem formatado e criar um norte e seguir, né, afundando. A empresa acabou que no ano passado, né, pelos relatórios, você, você chegou a dar uma olhada, a gente teve um bom resultado, estamos com, né, um capital em caixa. Só não podemos perder o timing e e ficar pra trás, né? Eu fico vendo os nossos concorrentes, os caras tão voando também, crescendo pra caralho, não para de investir em maquinário, estrutura. Então, a gente tem que também dar uma arriscada e, sabe, dar uma guinada dessa forte, eu tenho que entender para que área.",text,Contact,2026-02-05 02:13:59.359+00,,,
+806da900-751d-4b69-ad8e-a9df4d7982c4,3343,7ec107b8-95a5-45c2-b61d-cd73dec4eb16,"Fala, Fabinho! Beleza? Boa noite. Como é que você tá, meu irmão? Tudo bem? Parei aqui agora, só que eu tô botando o negócio no mudo. Deixa eu te falar. Eh, tá, tá certo. Dá, dá pra fazer sexta é sempre mais corrido nesse horário. O ideal é, né, tentar adiantar isso aí para amanhã. Até pra gente tentar mapear quais materiais e relatórios que a gente precisa colocar em pauta para serem discutidos e até mesmo apresentados, né, pro Thiago aí na apresentação, porque aquilo que você falou, quando um envolve porta pra dentro, a esfera é análise de resultados, dados, não só processos, números, né? E aí todo esse, todo esse material, a gente tem que deixar isso bem mastigado pra ter esses dados na ponta, pra ficar isso uma forma mais fácil dele, né, entender e ter essa visão macro assim da empresa.",text,Contact,2026-02-05 02:12:22.08+00,,,
+e00984f0-4c7e-4434-9925-9d20c6350ab5,3244,f6a2096a-a81a-4832-adfc-90777ef78d47,e o mlk é simplesmente o maior craque de 18 anos pós Pelé,text,Contact,2026-02-05 01:10:35.499+00,,,
+ac57d061-1b91-4579-8a3b-df506a5fcc57,3243,f6a2096a-a81a-4832-adfc-90777ef78d47,pagamos 8 milhões de euros mano,text,Contact,2026-02-05 01:10:24.93+00,,,
+28581537-4000-4fb5-beef-977e265b2ae7,3238,f6a2096a-a81a-4832-adfc-90777ef78d47,absurdo demais,text,Contact,2026-02-05 01:09:39.708+00,,,
+91a9827b-1093-4c2d-9afa-db9d830fb1b0,3237,f6a2096a-a81a-4832-adfc-90777ef78d47,real Madrid pegou o jovem prodígio Argentino errado pqp,text,Contact,2026-02-05 01:09:37.644+00,,,
+43291bd2-ad39-42e4-a668-7a9ec0a62ed6,3232,897b7460-bd68-4d16-a31b-5e9304c5f87d,Indo para casa,text,Contact,2026-02-05 01:09:29.543+00,,,
+d869b577-b6cb-4655-9a62-687df7b90cd9,3230,897b7460-bd68-4d16-a31b-5e9304c5f87d,Te amo ❤️,text,Contact,2026-02-05 01:09:25.529+00,,,
+a444f37a-4199-40ea-b473-ca70d763d2ea,3228,897b7460-bd68-4d16-a31b-5e9304c5f87d,Deus abençoe,text,Contact,2026-02-05 01:09:22.47+00,,,
+61b64538-f4c8-480e-968f-ded6e552da0e,3226,897b7460-bd68-4d16-a31b-5e9304c5f87d,Oiê,text,Contact,2026-02-05 01:09:20.244+00,,,
+d1cb3420-796d-4440-a9b5-be1bfff50e4f,3223,f6a2096a-a81a-4832-adfc-90777ef78d47,Montoro > mastantuono,text,Contact,2026-02-05 01:09:04.259+00,,,
+4318bd8e-8767-4308-8c75-f652b3a5bfdc,3222,f6a2096a-a81a-4832-adfc-90777ef78d47,Montoro é mt absurdo tbm tnc,text,Contact,2026-02-05 01:08:50.781+00,,,
+88164d77-e21c-4dde-83b8-fd26c3c32aa3,3217,f6a2096a-a81a-4832-adfc-90777ef78d47,meu time tem,text,Contact,2026-02-05 01:08:29.501+00,,,
+45d89249-83b0-48a0-8982-04c21f72ea0b,3216,f6a2096a-a81a-4832-adfc-90777ef78d47,volante artilheiro do brasileiro?,text,Contact,2026-02-05 01:08:26.721+00,,,
+42511ffe-d84e-47ea-88a0-96fe878603bd,3210,f6a2096a-a81a-4832-adfc-90777ef78d47,sou muito fã,text,Contact,2026-02-05 01:07:52.495+00,,,
+5a3ecb20-675c-4ea7-a968-685d6cf2b617,3209,f6a2096a-a81a-4832-adfc-90777ef78d47,sem nenhum perninha do lado sem marcar,text,Contact,2026-02-05 01:07:46.875+00,,,
+5da41044-ba28-4684-812d-fffbde42064f,3207,f6a2096a-a81a-4832-adfc-90777ef78d47,vtnc,text,Contact,2026-02-05 01:07:37.648+00,,,
+3b1b46e1-ba2e-4a14-853b-5587384f8d3c,3206,f6a2096a-a81a-4832-adfc-90777ef78d47,deixar ele soltinho nesse esquema de 3 zagueiros foi a melhor decisão já feita,text,Contact,2026-02-05 01:07:35.042+00,,,
+1059dd17-5a39-4545-890e-d503027de2eb,3204,f6a2096a-a81a-4832-adfc-90777ef78d47,absurdo,text,Contact,2026-02-05 01:07:25.042+00,,,
+34166636-6df6-4918-bcb7-e40667549e6f,3202,f6a2096a-a81a-4832-adfc-90777ef78d47,Danilo é outra parada,text,Contact,2026-02-05 01:07:23.682+00,,,
+ad1b5c29-9a9f-4c45-a9e3-7932388fc151,3200,f6a2096a-a81a-4832-adfc-90777ef78d47,mlk,text,Contact,2026-02-05 01:07:19.384+00,,,
+7878de03-6d68-42ea-b34b-890cb1cf3320,3141,e52b3bc9-127a-40cc-bc3d-4373a7aeb340,🚀 Connection successfully established!,text,Contact,2026-02-05 00:23:15.187+00,,,
+131c2ab6-a99b-4392-8177-151f4f782056,3139,7067a4e0-f4aa-4c55-abee-de5059c77520,chega sabadao so,text,User,2026-02-05 00:19:40.569+00,,,
+8487500f-ee4d-4d9b-9f9e-499149a7ea09,3135,8026a556-0790-486b-bd52-98de77292622,ta meio q ok,text,Contact,2026-02-04 23:57:55.541+00,,,
+aa44e2de-bc3b-40ea-b3fa-29a3e86c48ea,3134,268bd98a-a665-4093-a29d-2372ec5a0238,"**+55 4899695677 - Gustavo Priebe:**
+
+Alguém tem cupom de desconto do Web Summit Rio?",text,Contact,2026-02-04 23:57:21.068+00,,,
+c197073b-3d8a-448b-b255-a36d9dae9da1,3133,8026a556-0790-486b-bd52-98de77292622,money cant buy me love,text,Contact,2026-02-04 23:55:52.216+00,,,
+bcb50905-683f-433b-9866-0fc43e78c3a9,3132,8026a556-0790-486b-bd52-98de77292622,money,text,Contact,2026-02-04 23:55:47.253+00,,,
+fb671952-ca84-420a-936e-d16736e24285,3131,8026a556-0790-486b-bd52-98de77292622,i dont care much to,text,Contact,2026-02-04 23:55:46.388+00,,,
+99b8e969-9771-4849-b434-5fce90b2d3bd,2266,8026a556-0790-486b-bd52-98de77292622,teste,text,Contact,2026-02-04 01:15:27.094+00,,,
+c83e0599-9cf6-40d0-a348-29c763040569,2258,2444cad7-9dda-4b00-9393-6ea53d931f31,Onde?,text,Contact,2026-02-04 00:45:13.685+00,,,
+c22d1b82-3bdd-4e59-b645-3d9a9a5abbb6,2255,2444cad7-9dda-4b00-9393-6ea53d931f31,"00:00 ô Benhadinho, se quiser me ligar normal aí, um pouquinho só que eu tô chegando em casa, aí eu vou subir com as compras aqui.",text,Contact,2026-02-04 00:38:04.963+00,,,
+6810750b-7817-4f48-995d-67f6a6dc1aa5,2254,2444cad7-9dda-4b00-9393-6ea53d931f31,"Ô, viadinho, não sei se é a minha ou se é a sua internet aí, mas porra, tô chegando aqui em casa, porra, caiu, velho. Tô, tô escutando você tem um tempão.",text,Contact,2026-02-04 00:37:18.49+00,,,
+83546543-6f26-4a3f-af1c-17e47fe6a019,2253,897b7460-bd68-4d16-a31b-5e9304c5f87d,Te amo ❤️,text,Contact,2026-02-04 00:24:57.178+00,,,
+05d71e22-9c4f-45fd-9abe-ef68ecc45d4b,2252,897b7460-bd68-4d16-a31b-5e9304c5f87d,Deus abençoe 🙏🏻,text,Contact,2026-02-04 00:24:54.208+00,,,
+85fd4f0d-fe0a-47ce-bb7c-ef35ebf72690,2251,8026a556-0790-486b-bd52-98de77292622,123,text,Contact,2026-02-04 00:05:34.186+00,,,
+55c60698-67e3-4c49-bf9a-9f6f2d691b7f,2250,8026a556-0790-486b-bd52-98de77292622,123,text,Contact,2026-02-04 00:05:33.542+00,,,
+0d25b98e-ccb8-4ad9-b99f-4c93b40a284a,2249,8026a556-0790-486b-bd52-98de77292622,123,text,Contact,2026-02-04 00:05:33.091+00,,,
+3b32fdf0-c3f9-4f1f-9807-baf5bff785c8,2248,8026a556-0790-486b-bd52-98de77292622,testando,text,Contact,2026-02-04 00:05:31.421+00,,,
+6fffa55e-8861-427e-af7d-17680f846597,2247,8026a556-0790-486b-bd52-98de77292622,testando,text,Contact,2026-02-04 00:05:30.22+00,,,
+3eaa260d-5d5f-4283-8c09-aa71d462c49b,2235,2444cad7-9dda-4b00-9393-6ea53d931f31,Dmr,text,Contact,2026-02-03 22:05:53.507+00,,,
+463a2f50-5eed-4421-b7e4-ac0600f00e82,2230,897b7460-bd68-4d16-a31b-5e9304c5f87d,❤️,text,Contact,2026-02-03 22:01:22.281+00,,,
+97b7948a-ca81-4532-9872-d585d35c2345,2228,897b7460-bd68-4d16-a31b-5e9304c5f87d,Rsrs,text,Contact,2026-02-03 22:00:57.291+00,,,
+e0fbfc8b-5d48-4e40-ad1d-fc8168bb309c,2227,897b7460-bd68-4d16-a31b-5e9304c5f87d,Peso,text,Contact,2026-02-03 22:00:55.587+00,,,
+54ab17d1-85d0-4047-accb-bb484f6ef08a,2226,897b7460-bd68-4d16-a31b-5e9304c5f87d,E tira esse pedo,text,Contact,2026-02-03 22:00:53.506+00,,,
+c32db21f-e7e4-4dc9-b779-e14b580e87ed,2225,897b7460-bd68-4d16-a31b-5e9304c5f87d,Ao menos ele já sabe,text,Contact,2026-02-03 22:00:35.871+00,,,
+142b9b48-8581-465e-8215-de94d6f2cb28,2220,897b7460-bd68-4d16-a31b-5e9304c5f87d,Você está bem?,text,Contact,2026-02-03 21:59:28.449+00,,,
+87a86566-0117-466b-8c64-28c3f34a5540,2219,897b7460-bd68-4d16-a31b-5e9304c5f87d,Deus abençoe 🙏🏻,text,Contact,2026-02-03 21:59:22.628+00,,,
+8678f216-0b5e-4e2a-9217-1593a8e39e15,2218,897b7460-bd68-4d16-a31b-5e9304c5f87d,Te amo,text,Contact,2026-02-03 21:59:20.208+00,,,
+e5029f26-5fac-4ba6-8ddd-80da233dac61,2217,897b7460-bd68-4d16-a31b-5e9304c5f87d,Está bem,text,Contact,2026-02-03 21:59:18.919+00,,,
+86276bea-e9c2-4f7b-bfcd-c7b201035dcd,2216,2444cad7-9dda-4b00-9393-6ea53d931f31,Acaba q hr?,text,Contact,2026-02-03 21:55:40.12+00,,,
+15077ca1-4d99-4f64-b8fa-c9c58ac19673,2215,2444cad7-9dda-4b00-9393-6ea53d931f31,Porra hahahah,text,Contact,2026-02-03 21:55:37.677+00,,,
+d0056647-6f1d-4d6d-8014-53aa1dbcf066,2211,897b7460-bd68-4d16-a31b-5e9304c5f87d,Mas amanhã já me organizo,text,Contact,2026-02-03 21:50:20.183+00,,,
+2b632b89-340b-4915-a07e-df6be3887942,2210,897b7460-bd68-4d16-a31b-5e9304c5f87d,"Está bem, é que está frenético esses dias",text,Contact,2026-02-03 21:50:03.461+00,,,
+d3bf34cb-bf0b-4678-8b65-083cc70a26e2,2205,897b7460-bd68-4d16-a31b-5e9304c5f87d,Já vou te enviar,text,Contact,2026-02-03 21:49:17.366+00,,,
+add39943-3287-4067-bd90-4fa4cb7255d4,2204,897b7460-bd68-4d16-a31b-5e9304c5f87d,Isso,text,Contact,2026-02-03 21:49:11.636+00,,,
+d740a49a-4b0b-41c5-b8a2-09f814b9f571,2182,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,boa,text,Contact,2026-02-03 21:23:06.433+00,,,
+44dc31b6-5223-4466-a659-75ddd83aaa30,2179,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,e baixar planilha e upar de novo na campanha de recuperação,text,Contact,2026-02-03 21:22:43.417+00,,,
+b2c19f60-0b14-4d28-9989-04a584f0c190,2178,f9ac0d4d-068b-4999-867e-d2e5bee560f0,"
+
+`Edited Message:`
+
+Vou te mandar os horários disponíveis ainda esta semana:
+
+Quarta 14h, 15h, 16h
+Quinta 11h
+Sexta 11h, 13h, 14h ou 17h
+
+Se não der nesses, segunda à noite consigo pra você.",text,Contact,2026-02-03 21:22:42.8+00,,,
+7a9c09a7-7696-47fe-97a2-71521d55cee3,2177,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,ta,text,Contact,2026-02-03 21:22:27.482+00,,,
+25150205-d044-4cd4-a886-a66c75ce5d68,2176,f9ac0d4d-068b-4999-867e-d2e5bee560f0,"
+
+`Edited Message:`
+
+Vou te mandar os que tem livre aqui ainda essa semana:
+
+Quarta 14h, 15h, 16h
+Quinta 11h
+Sexta 11h, 13h, 14h ou 17h
+
+Se não der nesses, segunda à noite consigo pra você.",text,Contact,2026-02-03 21:22:26.759+00,,,
+ad559a9f-935e-479e-b28e-19f2669b6391,2172,612b65d8-0b3c-421e-a8f1-2d8f1ee502a7,tem consultor pra ajudar?,text,Contact,2026-02-03 21:22:00.677+00,,,

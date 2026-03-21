@@ -1,0 +1,257 @@
+{
+  "name": "Whatsapp - Passagem de Leads",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "passagemreal",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -48,
+        -16
+      ],
+      "id": "72e70dd9-9205-463c-a8fb-deb0fd98d65d",
+      "name": "Webhook",
+      "webhookId": "b96352e5-68e0-4df8-b218-f35a9a42526c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d44e2330-4e5c-43db-8311-737d4a2453ed",
+              "name": "quem",
+              "value": "={{ $json.body.data.key.remoteJid }}",
+              "type": "string"
+            },
+            {
+              "id": "3799d2bd-b0c7-46f1-84f6-516f15a4298e",
+              "name": "instance",
+              "value": "={{ $json.body.instance }}",
+              "type": "string"
+            },
+            {
+              "id": "2b318653-e3cf-4436-a100-f221c6ff3de0",
+              "name": "message",
+              "value": "={{ $json.body.data.message.conversation }}",
+              "type": "string"
+            },
+            {
+              "id": "cfb293aa-8c59-41f8-8dc3-1f3b88c3d1be",
+              "name": "id",
+              "value": "={{ $json.body.data.key.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "eacb803c-ab2d-41b3-bd24-511483545592",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "options": {
+          "systemMessage": "Você faz a passagem de bastao entre mkt e vendas. \n\nao receber mensagens, notifica o grupo de passagem de bastão."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "a412a24c-cd7c-49d6-a904-03c2bdacb802",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        288,
+        208
+      ],
+      "id": "412cc82e-5a68-4b64-a219-b6585f378121",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "JsxOv6MFdRLJQ8rt",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.quem }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.5,
+      "position": [
+        464,
+        224
+      ],
+      "id": "684efe07-9383-40de-b91c-9ae5cc2d2756",
+      "name": "Redis Chat Memory",
+      "credentials": {
+        "redis": {
+          "id": "QJhbrdQT3v7qKIRt",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $('Edit Fields').item.json.instance }}",
+        "remoteJid": "={{ $json.data[0].id }}",
+        "messageText": "=Novo Lead recebido no whatsapp: {{ $('Webhook').item.json.body.data.message.messageContextInfo.deviceListMetadata.senderTimestamp }}\n\nNúmero do Contato: {{ $('Edit Fields').item.json.quem }}\n\nNome do Contato: {{ $('Webhook').item.json.body.data.pushName }}\n\nMensagem: {{ $('Edit Fields').item.json.message }}\n",
+        "options_message": {
+          "delay": 1200,
+          "mentions": {
+            "mentionsSettings": {
+              "mentionsEveryOne": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        0
+      ],
+      "id": "5cd8faa2-145b-4323-88c4-420d81e98426",
+      "name": "Enviar texto",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3P4QVP9D7knRuQkW",
+          "name": "Evolution account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "groups-api",
+        "operation": "fetch-groups",
+        "instanceName": "={{ $('Edit Fields').item.json.instance }}",
+        "searchMethod": "fetchAll",
+        "getParticipants": true
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        768,
+        0
+      ],
+      "id": "a801c1d1-97ca-4b29-8caf-7c41a029fa1b",
+      "name": "Buscar grupos",
+      "credentials": {
+        "evolutionApi": {
+          "id": "3P4QVP9D7knRuQkW",
+          "name": "Evolution account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Buscar grupos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto": {
+      "main": [
+        []
+      ]
+    },
+    "Buscar grupos": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "035dc294-646b-4504-8560-3091589840b3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49eedb587b9b112cdc30dbb3526948bb66d8d49f2489a88def630e2ae66f6286"
+  },
+  "id": "VGth52EVwckNTpiw",
+  "tags": []
+}
