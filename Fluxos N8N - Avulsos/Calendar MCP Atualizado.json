@@ -1,0 +1,331 @@
+{
+  "name": "Calendar MCP Atualizado",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "fabiohhsales@gmail.com",
+          "mode": "list",
+          "cachedResultName": "fabiohhsales@gmail.com"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+        "options": {
+          "fields": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Fields', ``, 'string') }}",
+          "iCalUID": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('iCalUID', ``, 'string') }}"
+        }
+      },
+      "id": "fe256267-80a2-4dce-b539-79ff593bbac8",
+      "name": "SearchEvent",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "position": [
+        816,
+        1120
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "5lRj8EWRpCuHN0LM",
+          "name": "Google Calendar account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "fabiohhsales@gmail.com",
+          "mode": "list",
+          "cachedResultName": "fabiohhsales@gmail.com"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', `sempre crie agendamentos de 30 minutos, portanto o end time deve ser o start time + 30 minutos.`, 'string') }}",
+        "additionalFields": {
+          "attendees": [
+            "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('attendees0_Attendees', `Solicite ao usuário seu email para ser adicionado no convite. caso nao seja informado, nao adicione nada.`, 'string') }}"
+          ],
+          "conferenceDataUi": {
+            "conferenceDataValues": {
+              "conferenceSolution": "hangoutsMeet"
+            }
+          },
+          "description": "Agendamento Teste Fabim",
+          "sendUpdates": "all",
+          "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}"
+        }
+      },
+      "id": "09b127ef-c036-4619-b72f-f4ea476d0995",
+      "name": "CreateEvent",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "position": [
+        928,
+        1120
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "5lRj8EWRpCuHN0LM",
+          "name": "Google Calendar account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "fabiohhsales@gmail.com",
+          "mode": "list",
+          "cachedResultName": "fabiohhsales@gmail.com"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "updateFields": {
+          "description": "={{ $fromAI(\"event_description\", \"The event description\", \"string\") }}",
+          "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+          "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+          "summary": "={{ $fromAI(\"event_title\", \"The event title\", \"string\") }}"
+        }
+      },
+      "id": "74440d18-53f5-4f5d-ba1b-a75730204146",
+      "name": "UpdateEvent",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "position": [
+        1056,
+        1120
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "5lRj8EWRpCuHN0LM",
+          "name": "Google Calendar account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "fabiohhsales@gmail.com",
+          "mode": "list",
+          "cachedResultName": "fabiohhsales@gmail.com"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', `use os ids identificados pelo search events para exclui-los caso solicitado pelo usuário.`, 'string') }}",
+        "options": {
+          "sendUpdates": "all"
+        }
+      },
+      "id": "eb439abf-db43-478f-a617-ad0e5ea6818a",
+      "name": "DeleteEvent",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "position": [
+        1168,
+        1120
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "5lRj8EWRpCuHN0LM",
+          "name": "Google Calendar account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "my-calendar"
+      },
+      "id": "d8a203b7-4981-4ef7-adce-efea9dfca9e8",
+      "name": "Google Calendar MCP",
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "position": [
+        816,
+        912
+      ],
+      "webhookId": "f9d9d5ea-6f83-42c8-ae50-ee6c71789bca",
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=You are a helpful assistant.\nCurrent datetime is {{ $now.toString() }}\nAlways name the event created in the calendar as (Username <> Fábio Teste)"
+        }
+      },
+      "id": "49e16f78-cf83-4ff1-b6fc-0546385a82bb",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        1632,
+        880
+      ],
+      "typeVersion": 1.8
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "16b7d644-a9f3-47ef-86a9-eca5518fcc1b",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        1440,
+        880
+      ],
+      "webhookId": "7b02318f-1c6b-4f2a-9a4f-b17fa69ea680",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {},
+      "id": "8f62e9ab-2078-4c58-a1eb-7fb3a22528e9",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        1728,
+        1104
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "sseEndpoint": "https://n8n.n8nfabim.online/mcp/my-calendar/sse",
+        "options": {}
+      },
+      "id": "7676079d-0ea3-42db-bd06-6c125fb4dd00",
+      "name": "Calendar MCP",
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "position": [
+        1856,
+        1104
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "id": "2544be0c-3662-471e-83ac-35c906d01c2e",
+      "name": "gpt-4o",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        1600,
+        1104
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "t61JQB05nEUnXenm",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "gpt-4o": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CreateEvent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Google Calendar MCP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeleteEvent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Google Calendar MCP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SearchEvent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Google Calendar MCP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UpdateEvent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Google Calendar MCP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar MCP": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1bb77e01-9142-429a-af9d-6d6e7be05946",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49eedb587b9b112cdc30dbb3526948bb66d8d49f2489a88def630e2ae66f6286"
+  },
+  "id": "HLbTOiooMKvEiF2B",
+  "tags": []
+}

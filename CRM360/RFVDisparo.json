@@ -1,0 +1,171 @@
+{
+  "name": "RFVDisparo",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "=numero pessoal",
+        "remoteJid": "={{ $('Code in JavaScript').item.json.telefone_vendedor }}@lid",
+        "messageText": "={{ $json.output[0].content[0].text }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        -304
+      ],
+      "id": "5c0caf97-7c6c-4a24-8920-bdadef616cd1",
+      "name": "Responde Lead",
+      "credentials": {
+        "evolutionApi": {
+          "id": "INYpVW2ImVM3gik6",
+          "name": "Evolution account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cbe3384f-c4e6-454c-a3c1-ee197ee1f846",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -880,
+        -128
+      ],
+      "id": "b462b49b-6340-43bb-8831-e6722012fc10",
+      "name": "Webhook",
+      "webhookId": "cbe3384f-c4e6-454c-a3c1-ee197ee1f846"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Extrai os dados do body\nconst rawString = $input.all()[0].json.body.body;\nconst parsedData = JSON.parse(rawString);\n\nconst headers = parsedData.hotlist.headers;\nconst rows = parsedData.hotlist.rows;\n\n// 2. Transforma a lista em um texto formatado para a IA\nlet textoFormatado = \"LISTA DE CLIENTES HOTLIST:\\n\";\n\nrows.forEach((row, rowIndex) => {\n  textoFormatado += `\\n--- Cliente ${rowIndex + 1} ---\\n`;\n  headers.forEach((header, colIndex) => {\n    textoFormatado += `${header}: ${row[colIndex]}\\n`;\n  });\n});\n\n// 3. Retorna um objeto simples com UMA string\nreturn {\n  prompt_ia: textoFormatado,\n  id_planilha: parsedData.id,\n  telefone_vendedor: parsedData.telefone_destino\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -672,
+        -128
+      ],
+      "id": "970b2e71-c30e-48ae-9329-14a4880d35fd",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "responses": {
+          "values": [
+            {
+              "content": "={{ $json.prompt_ia }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "instructions": "organize os dados e envie uma mensage como uma estrutura de repasse unica, com um resumo dos dados contatos ao todo"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2,
+      "position": [
+        -368,
+        -304
+      ],
+      "id": "f07ec7bd-c0a3-41ed-afb9-998f65dc0d99",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "xlmVhXwXAlOQYtsu",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "dados_estruturados",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -480,
+        -32
+      ],
+      "id": "22135db2-081f-4b89-9667-22074696d62b",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Responde Lead": {
+      "main": [
+        []
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Responde Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "72336270-22f9-49fa-a17b-325b4afa5cf6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e45d296ed0cff94379eb3ff11bd6ede39354fb3462fffdb5297388b225cafc08"
+  },
+  "id": "urx1eJo6ZbqKu80K",
+  "tags": []
+}

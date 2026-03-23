@@ -1,0 +1,199 @@
+{
+  "name": "RFV - Flow",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbwYzfEcwapKwMJ7yPgX_2qn6oz-DlbcO7XLTzYH5aBrZTRL4GQ9U2ZWkr7Zzr3Ha4Zt/exec",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "Name:",
+              "value": "link"
+            },
+            {
+              "name": "link",
+              "value": "=https://docs.google.com/spreadsheets/d/1iaqpngJbJ9ZdN0c0XCo8Vh0GTJKnINLlLMPsIIUjKXM/edit?gid=0#gid=0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        256,
+        0
+      ],
+      "id": "8968e055-e9af-4ade-a1ec-161279f5e392",
+      "name": "Gera Análise RFV Inicial"
+    },
+    {
+      "parameters": {
+        "formTitle": "RFV",
+        "formDescription": "lalalalal",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "link",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "cliente"
+            },
+            {
+              "fieldLabel": "quer receber o plano de ataque no zap? deixe seu numero 55DDDNUMERO",
+              "placeholder": "5532999009727"
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {
+          "useWorkflowTimezone": false
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        16,
+        0
+      ],
+      "id": "b3c01cf4-7cd2-4c55-b786-7db773f1777b",
+      "name": "On form submission",
+      "webhookId": "86824998-9019-4fe8-98fe-f7f2cfc8409b"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://script.google.com/macros/s/AKfycbx_PdtBCxercS15yXAI6pCW1jl74NoJX8m85XfCnNDBHdgYjYZz-iSeUnU7bYx15g2n/exec",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"url\": \"{{ $json.link }}\",\n  \"telefone\": \"{{ $('On form submission').item.json['quer receber o plano de ataque no zap? deixe seu numero 55DDDNUMERO'] }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        0
+      ],
+      "id": "ee8bd89b-d9ee-41f8-b46a-9b507cfec3e9",
+      "name": "Gera Acesso Ao dashboard"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "redirect",
+        "redirectUrl": "={{ $json.dashboardUrl }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        656,
+        0
+      ],
+      "id": "6fb42cfa-c487-44ef-8068-865a2aab6a1d",
+      "name": "Form",
+      "webhookId": "162d665b-60ba-4556-a934-a165ab3f5b8d"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "7c4526f0-13dd-482a-be50-72d6db66708e",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        32,
+        304
+      ],
+      "id": "732a0885-9854-47b3-8081-5b2cb9fc137d",
+      "name": "Webhook",
+      "webhookId": "7c4526f0-13dd-482a-be50-72d6db66708e"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://projeto-n8n.kqw6ty.easypanel.host/webhook/cbe3384f-c4e6-454c-a3c1-ee197ee1f846",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "body",
+              "value": "={{ $json.body }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        352,
+        304
+      ],
+      "id": "9441848d-c90a-4968-b999-1a07ab20f373",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Gera Análise RFV Inicial",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gera Análise RFV Inicial": {
+      "main": [
+        [
+          {
+            "node": "Gera Acesso Ao dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gera Acesso Ao dashboard": {
+      "main": [
+        [
+          {
+            "node": "Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "89dab64e-07e4-457a-ac0a-4caff0425104",
+  "meta": {
+    "instanceId": "49eedb587b9b112cdc30dbb3526948bb66d8d49f2489a88def630e2ae66f6286"
+  },
+  "id": "cNxdSDqGJ6mh7QlH",
+  "tags": []
+}

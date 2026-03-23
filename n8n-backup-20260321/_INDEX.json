@@ -1,0 +1,234 @@
+[
+  {
+    "name": "Telegram Routine Assistant V2",
+    "id": "088KjQIltoG8pDvD",
+    "active": true,
+    "nodes": 19,
+    "size": 22820,
+    "file": "Telegram_Routine_Assistant_V2__088KjQIltoG8pDvD.json"
+  },
+  {
+    "name": "B.3 — Workflow: Follow-up Nível 1",
+    "id": "0Xz2szGXdNUiqhvI",
+    "active": false,
+    "nodes": 14,
+    "size": 10055,
+    "file": "B_3___Workflow__Follow-up_Nível_1__0Xz2szGXdNUiqhvI.json"
+  },
+  {
+    "name": "Google Scaper",
+    "id": "4V1I273LJ466GHBO",
+    "active": false,
+    "nodes": 15,
+    "size": 17371,
+    "file": "Google_Scaper__4V1I273LJ466GHBO.json"
+  },
+  {
+    "name": "V2 Tool: Google Sheets",
+    "id": "5hmd23RMZTfjMhQD",
+    "active": false,
+    "nodes": 3,
+    "size": 1881,
+    "file": "V2_Tool__Google_Sheets__5hmd23RMZTfjMhQD.json"
+  },
+  {
+    "name": "Calendar MCP",
+    "id": "9jHdRyn24md-vSzgAwSrf",
+    "active": true,
+    "nodes": 14,
+    "size": 16841,
+    "file": "Calendar_MCP__9jHdRyn24md-vSzgAwSrf.json"
+  },
+  {
+    "name": "B.4 — Workflow: Follow-up Nível 2",
+    "id": "AJO4ddV2GGyJKLNv",
+    "active": false,
+    "nodes": 14,
+    "size": 9250,
+    "file": "B_4___Workflow__Follow-up_Nível_2__AJO4ddV2GGyJKLNv.json"
+  },
+  {
+    "name": "B.4 — Workflow: Follow-up Nível 2",
+    "id": "AgoRDsX9dvt7C5Jh",
+    "active": false,
+    "nodes": 13,
+    "size": 9260,
+    "file": "B_4___Workflow__Follow-up_Nível_2__AgoRDsX9dvt7C5Jh.json"
+  },
+  {
+    "name": "B.1 — Workflow: Confirmação D-1",
+    "id": "EfFe9jkBLkbspyQ1",
+    "active": false,
+    "nodes": 10,
+    "size": 5878,
+    "file": "B_1___Workflow__Confirmação_D-1__EfFe9jkBLkbspyQ1.json"
+  },
+  {
+    "name": "B.2 — Workflow: Lembrete H-2",
+    "id": "GUb1x9tyfkvJjrmm",
+    "active": false,
+    "nodes": 8,
+    "size": 4819,
+    "file": "B_2___Workflow__Lembrete_H-2__GUb1x9tyfkvJjrmm.json"
+  },
+  {
+    "name": "Intelligent Routine Manager V2",
+    "id": "GbVHqY5GgSfCdIAn",
+    "active": false,
+    "nodes": 12,
+    "size": 6607,
+    "file": "Intelligent_Routine_Manager_V2__GbVHqY5GgSfCdIAn.json"
+  },
+  {
+    "name": "C.1 — Sub-Workflow: Logger Central (followup_logs)",
+    "id": "ItkbnDLSJtgmRXeo",
+    "active": false,
+    "nodes": 2,
+    "size": 1831,
+    "file": "C_1___Sub-Workflow__Logger_Central__followup_logs___ItkbnDLSJtgmRXeo.json"
+  },
+  {
+    "name": "V2 Tool: Google Docs",
+    "id": "ODjMHMDPzgS5gdVM",
+    "active": false,
+    "nodes": 3,
+    "size": 1805,
+    "file": "V2_Tool__Google_Docs__ODjMHMDPzgS5gdVM.json"
+  },
+  {
+    "name": "B.5 — Workflow: Gestão de No-show",
+    "id": "QaAhCf1zBYgSgBQP",
+    "active": false,
+    "nodes": 8,
+    "size": 4671,
+    "file": "B_5___Workflow__Gestão_de_No-show__QaAhCf1zBYgSgBQP.json"
+  },
+  {
+    "name": "V2 Tool: ClickUp Dealwise",
+    "id": "QnAuUsQxspjp3rbV",
+    "active": false,
+    "nodes": 7,
+    "size": 3854,
+    "file": "V2_Tool__ClickUp_Dealwise__QnAuUsQxspjp3rbV.json"
+  },
+  {
+    "name": "Ping Pong-Buffer de Mensagens",
+    "id": "QqnIq2EMe1UZhJRBO6pll",
+    "active": false,
+    "nodes": 61,
+    "size": 59793,
+    "file": "Ping_Pong-Buffer_de_Mensagens__QqnIq2EMe1UZhJRBO6pll.json"
+  },
+  {
+    "name": "V2 Tool: ClickUp Sales ",
+    "id": "RJLSP2zYsNbulQZC",
+    "active": false,
+    "nodes": 7,
+    "size": 3852,
+    "file": "V2_Tool__ClickUp_Sales___RJLSP2zYsNbulQZC.json"
+  },
+  {
+    "name": "Nodes Aleatórios e/ou desuso",
+    "id": "SXb5WVzN9IpN8qaCWf1Ek",
+    "active": false,
+    "nodes": 11,
+    "size": 9713,
+    "file": "Nodes_Aleatórios_e_ou_desuso__SXb5WVzN9IpN8qaCWf1Ek.json"
+  },
+  {
+    "name": "My Sub-Workflow 1",
+    "id": "ToGDVDe0plU54hLR",
+    "active": true,
+    "nodes": 10,
+    "size": 20730,
+    "file": "My_Sub-Workflow_1__ToGDVDe0plU54hLR.json"
+  },
+  {
+    "name": "B.5 — Workflow: Gestão de No-show",
+    "id": "Vdz9SKtn44v3kfjk",
+    "active": false,
+    "nodes": 8,
+    "size": 4974,
+    "file": "B_5___Workflow__Gestão_de_No-show__Vdz9SKtn44v3kfjk.json"
+  },
+  {
+    "name": "🛒 Google Shopping Scraper - Dealwise",
+    "id": "W64O5rjQV2mrFoG7",
+    "active": false,
+    "nodes": 10,
+    "size": 13126,
+    "file": "__Google_Shopping_Scraper_-_Dealwise__W64O5rjQV2mrFoG7.json"
+  },
+  {
+    "name": "V2 Tool: Calendar Write",
+    "id": "WHlQMpmtrIxvMJpp",
+    "active": false,
+    "nodes": 7,
+    "size": 3518,
+    "file": "V2_Tool__Calendar_Write__WHlQMpmtrIxvMJpp.json"
+  },
+  {
+    "name": "B.2 — Workflow: Lembrete H-2",
+    "id": "kTcvosBcDe7ncs9p",
+    "active": false,
+    "nodes": 7,
+    "size": 4569,
+    "file": "B_2___Workflow__Lembrete_H-2__kTcvosBcDe7ncs9p.json"
+  },
+  {
+    "name": "Confirmação de Agendamento - 24h",
+    "id": "klcRRPGxJlXRCCjk",
+    "active": true,
+    "nodes": 20,
+    "size": 23730,
+    "file": "Confirmação_de_Agendamento_-_24h__klcRRPGxJlXRCCjk.json"
+  },
+  {
+    "name": "[CÓPIA] My workflow — v24 DEV",
+    "id": "mH3da2kUkwQgEgBd",
+    "active": true,
+    "nodes": 123,
+    "size": 240453,
+    "file": "_CÓPIA__My_workflow___v24_DEV__mH3da2kUkwQgEgBd.json"
+  },
+  {
+    "name": "B.3 — Workflow: Follow-up Nível 1",
+    "id": "uT9mzDveHAzBf7p4",
+    "active": false,
+    "nodes": 13,
+    "size": 9780,
+    "file": "B_3___Workflow__Follow-up_Nível_1__uT9mzDveHAzBf7p4.json"
+  },
+  {
+    "name": "V2 Tool: Calendar Read",
+    "id": "wE2o7kRcTOt1kXHn",
+    "active": true,
+    "nodes": 3,
+    "size": 3767,
+    "file": "V2_Tool__Calendar_Read__wE2o7kRcTOt1kXHn.json"
+  },
+  {
+    "name": "V2 Tool: Drive Full",
+    "id": "wkv3VGdlPst2KBlw",
+    "active": true,
+    "nodes": 3,
+    "size": 4240,
+    "file": "V2_Tool__Drive_Full__wkv3VGdlPst2KBlw.json"
+  },
+  {
+    "name": "My workflow",
+    "id": "xm5mLCg6Zto9glRCKECLU",
+    "active": true,
+    "nodes": 113,
+    "size": 219466,
+    "file": "My_workflow__xm5mLCg6Zto9glRCKECLU.json"
+  },
+  {
+    "name": "C.2 — Workflow: Agente Sincronizador Chatwoot",
+    "id": "yDaQHb0kKuhSFXuX",
+    "active": false,
+    "nodes": 6,
+    "size": 4448,
+    "file": "C_2___Workflow__Agente_Sincronizador_Chatwoot__yDaQHb0kKuhSFXuX.json"
+  }
+]

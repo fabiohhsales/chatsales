@@ -1,0 +1,386 @@
+{
+  "name": "Google Shopping Scraper + IA",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "🔍 Busca de Preços - Google Shopping",
+        "formDescription": "Preencha para buscar e analisar preços de concorrentes",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Produto",
+              "placeholder": "Ex: iPhone 13 Rosa 128GB",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Quantidade de resultados",
+              "fieldType": "number",
+              "placeholder": "10",
+              "requiredField": false
+            },
+            {
+              "fieldLabel": "Faixa de preço mínimo (R$)",
+              "fieldType": "number",
+              "placeholder": "0",
+              "requiredField": false
+            },
+            {
+              "fieldLabel": "Faixa de preço máximo (R$)",
+              "fieldType": "number",
+              "placeholder": "99999",
+              "requiredField": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "form-trigger",
+      "name": "📋 Formulário de Busca",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2,
+      "position": [0, 300],
+      "webhookId": "google-shopping-form"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "name": "produto",
+              "value": "={{ $json.Produto }}",
+              "type": "string"
+            },
+            {
+              "name": "quantidade",
+              "value": "={{ $json['Quantidade de resultados'] || 10 }}",
+              "type": "number"
+            },
+            {
+              "name": "preco_min",
+              "value": "={{ $json['Faixa de preço mínimo (R$)'] || 0 }}",
+              "type": "number"
+            },
+            {
+              "name": "preco_max",
+              "value": "={{ $json['Faixa de preço máximo (R$)'] || 99999 }}",
+              "type": "number"
+            },
+            {
+              "name": "produto_encoded",
+              "value": "={{ encodeURIComponent($json.Produto) }}",
+              "type": "string"
+            },
+            {
+              "name": "scraper_api_key",
+              "value": "SUA_CHAVE_SCRAPERAPI_AQUI",
+              "type": "string"
+            },
+            {
+              "name": "busca_id",
+              "value": "={{ $now.toISO() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-variables",
+      "name": "⚙️ Configurar Variáveis",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=http://api.scraperapi.com/?api_key={{ $json.scraper_api_key }}&url={{ encodeURIComponent('https://www.google.com/search?q=' + $json.produto_encoded + '&tbm=shop&hl=pt-BR&gl=br&num=' + $json.quantidade) }}&render=false&country_code=br",
+        "options": {
+          "timeout": 30000,
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "fetch-google-shopping",
+      "name": "🌐 Buscar Google Shopping",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Parser do HTML do Google Shopping\nconst html = $input.first().json.data;\nconst produto_buscado = $('⚙️ Configurar Variáveis').first().json.produto;\nconst preco_min = $('⚙️ Configurar Variáveis').first().json.preco_min;\nconst preco_max = $('⚙️ Configurar Variáveis').first().json.preco_max;\nconst busca_id = $('⚙️ Configurar Variáveis').first().json.busca_id;\n\nconst resultados = [];\n\n// Extrair blocos de produtos do Google Shopping\n// Pattern para capturar dados dos cards de produto\nconst productPattern = /<div[^>]*class=\"[^\"]*sh-dgr__content[^\"]*\"[^>]*>(.*?)<\\/div>\\s*<\\/div>/gs;\nconst namePattern = /<h3[^>]*class=\"[^\"]*tAxDx[^\"]*\"[^>]*>([^<]+)<\\/h3>/;\nconst pricePattern = /class=\"[^\"]*a8Pemb[^\"]*\"[^>]*>([^<]+)<\\/span>/;\nconst linkPattern = /<a[^>]*href=\"(\\/shopping\\/product[^\"]+|https?:[^\"]+)\"[^>]*>/;\nconst sellerPattern = /class=\"[^\"]*aULzUe[^\"]*\"[^>]*>([^<]+)<\\/span>/;\n\n// Método alternativo: buscar por padrão de preço em Reais\nconst altProductPattern = /data-sh-or=\"([^\"]+)\"[^>]*>.*?<span[^>]*class=\"[^\"]*a8Pemb[^\"]*\"[^>]*>R\\$\\s*([\\d.,]+).*?<h3[^>]*>([^<]+)<\\/h3>.*?href=\"([^\"]+)\"/gs;\n\n// Tentar extração primária\nlet matches;\nconst priceBlocks = html.match(/R\\$[\\s\\d.,]+/g) || [];\n\n// Extração robusta por regex em múltiplas passagens\nconst linkMatches = html.match(/href=\"(https:\\/\\/www\\.google\\.com\\/shopping\\/product\\/[^\"]+)\"/g) || [];\nconst nameMatches = html.match(/<h3[^>]*class=\"[^\"]*tAxDx[^\"]*\"[^>]*>([^<]+)<\\/h3>/g) || [];\nconst priceMatches = html.match(/class=\"[^\"]*a8Pemb[^\"]*OFFNJ[^\"]*\"[^>]*>R\\$&nbsp;([\\d.,]+)<\\/span>/g) || \n                    html.match(/class=\"[^\"]*a8Pemb[^\"]*\"[^>]*>R\\$\\s*([\\d.,]+)<\\/span>/g) || [];\n\n// Construir resultados\nconst count = Math.min(nameMatches.length, priceMatches.length, linkMatches.length);\n\nfor (let i = 0; i < count; i++) {\n  try {\n    const nameMatch = nameMatches[i]?.match(/>([^<]+)<\\/h3>/);\n    const priceMatch = priceMatches[i]?.match(/R\\$[&nbsp;\\s]*([\\d.,]+)/);\n    const linkMatch = linkMatches[i]?.match(/href=\"([^\"]+)\"/);\n    \n    if (!nameMatch || !priceMatch) continue;\n    \n    const nome = nameMatch[1].trim();\n    const precoStr = priceMatch[1].replace(/\\./g, '').replace(',', '.');\n    const preco = parseFloat(precoStr);\n    const link = linkMatch ? linkMatch[1] : '';\n    \n    // Filtrar por faixa de preço\n    if (preco < preco_min || preco > preco_max) continue;\n    \n    resultados.push({\n      busca_id,\n      produto_buscado,\n      nome_produto: nome,\n      preco_raw: `R$ ${priceMatch[1]}`,\n      preco_numerico: preco,\n      link_google: `https://www.google.com${link}`,\n      link_produto: '',  // será preenchido no próximo step\n      vendedor: '',      // será extraído ao visitar o link\n      match_score: 0,    // será calculado pela IA\n      analise_ia: '',\n      data_coleta: new Date().toISOString()\n    });\n  } catch(e) {\n    // Ignorar erros de parsing individual\n    continue;\n  }\n}\n\n// Se não encontrou nada, retornar item de erro\nif (resultados.length === 0) {\n  return [{\n    json: {\n      erro: 'Nenhum produto encontrado. Verifique a busca ou a chave da ScraperAPI.',\n      html_length: html.length,\n      produto_buscado\n    }\n  }];\n}\n\nreturn resultados.map(r => ({ json: r }));"
+      },
+      "id": "parse-html",
+      "name": "🔍 Parsear Resultados",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "split-batches",
+      "name": "🔄 Loop por Produto",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [880, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.link_google }}",
+        "options": {
+          "timeout": 15000,
+          "redirect": {
+            "redirect": {
+              "followRedirects": true,
+              "maxRedirects": 5
+            }
+          },
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "fetch-product-page",
+      "name": "🔗 Acessar Página do Produto",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1100, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Extrair link real do marketplace a partir da página do Google Shopping\nconst html = $input.first().json.data || '';\nconst dadosProduto = $('🔄 Loop por Produto').first().json;\n\n// Padrões para detectar links de marketplaces brasileiros\nconst marketplacePatterns = [\n  { nome: 'Mercado Livre', pattern: /href=\"(https:\\/\\/[^\"]*mercadolivre\\.com\\.br[^\"]*)\"/, regex_vendedor: /class=\"[^\"]*ui-pdp-seller[^\"]*\"[^>]*>([^<]+)<\\/span>/ },\n  { nome: 'Amazon', pattern: /href=\"(https:\\/\\/[^\"]*amazon\\.com\\.br[^\"]*)\"/, regex_vendedor: /#sellerProfileTriggerId[^>]*>([^<]+)<\\/a>/ },\n  { nome: 'Magazine Luiza', pattern: /href=\"(https:\\/\\/[^\"]*magazineluiza\\.com\\.br[^\"]*)\"/, regex_vendedor: /seller-name[^>]*>([^<]+)</ },\n  { nome: 'Americanas', pattern: /href=\"(https:\\/\\/[^\"]*americanas\\.com\\.br[^\"]*)\"/, regex_vendedor: /sold-and-delivered[^>]*>([^<]+)</ },\n  { nome: 'Casas Bahia', pattern: /href=\"(https:\\/\\/[^\"]*casasbahia\\.com\\.br[^\"]*)\"/, regex_vendedor: /seller-info[^>]*>([^<]+)</ },\n  { nome: 'Submarino', pattern: /href=\"(https:\\/\\/[^\"]*submarino\\.com\\.br[^\"]*)\"/, regex_vendedor: /seller[^>]*>([^<]+)</ },\n  { nome: 'Shopee', pattern: /href=\"(https:\\/\\/[^\"]*shopee\\.com\\.br[^\"]*)\"/, regex_vendedor: /shopName[^>]*>([^<]+)</ },\n  { nome: 'Kabum', pattern: /href=\"(https:\\/\\/[^\"]*kabum\\.com\\.br[^\"]*)\"/, regex_vendedor: /seller[^>]*>([^<]+)</ }\n];\n\nlet link_real = '';\nlet marketplace_detectado = 'Desconhecido';\n\n// Tentar detectar o marketplace pelo link do Google Shopping\nfor (const mp of marketplacePatterns) {\n  const match = html.match(mp.pattern);\n  if (match) {\n    link_real = match[1];\n    marketplace_detectado = mp.nome;\n    break;\n  }\n}\n\n// Se não achou pelo HTML, tentar pela URL atual (após redirect)\nif (!link_real) {\n  const urlAtual = $input.first().json.url || '';\n  for (const mp of marketplacePatterns) {\n    if (mp.pattern.test(urlAtual)) {\n      link_real = urlAtual;\n      marketplace_detectado = mp.nome;\n      break;\n    }\n  }\n}\n\nreturn [{\n  json: {\n    ...dadosProduto,\n    link_produto: link_real || dadosProduto.link_google,\n    marketplace: marketplace_detectado,\n    precisa_visitar: link_real !== ''\n  }\n}];"
+      },
+      "id": "extract-link",
+      "name": "🏪 Detectar Marketplace",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1320, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.link_produto }}",
+        "options": {
+          "timeout": 20000,
+          "redirect": {
+            "redirect": {
+              "followRedirects": true,
+              "maxRedirects": 5
+            }
+          },
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "fetch-marketplace",
+      "name": "🛒 Acessar Marketplace",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1540, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Extrair vendedor de acordo com o marketplace detectado\nconst html = $input.first().json.data || '';\nconst dadosProduto = $('🏪 Detectar Marketplace').first().json;\nconst marketplace = dadosProduto.marketplace;\n\nlet vendedor = 'Não identificado';\n\n// Padrões específicos por marketplace\nconst extractors = {\n  'Mercado Livre': [\n    /class=\"[^\"]*ui-pdp-seller__link-trigger[^\"]*\"[^>]*>([^<]+)<\\/a>/,\n    /Vendido por<\\/span>\\s*<span[^>]*>([^<]+)<\\/span>/,\n    /\"sellerNickname\":\"([^\"]+)\"/\n  ],\n  'Amazon': [\n    /id=\"sellerProfileTriggerId\"[^>]*>([^<]+)<\\/a>/,\n    /\"seller\":\\{\"displayName\":\"([^\"]+)\"/,\n    /Vendido por:?<\\/span>\\s*<span[^>]*>([^<]+)<\\/span>/\n  ],\n  'Magazine Luiza': [\n    /class=\"[^\"]*seller-name[^\"]*\"[^>]*>([^<]+)</,\n    /\"sellerName\":\"([^\"]+)\"/,\n    /Vendedor:\\s*([^<\"]+)/\n  ],\n  'Americanas': [\n    /class=\"[^\"]*soldBy[^\"]*\"[^>]*>([^<]+)</,\n    /\"sellerName\":\"([^\"]+)\"/\n  ],\n  'Casas Bahia': [\n    /Vendido e entregue por<[^>]+>([^<]+)</,\n    /\"sellerName\":\"([^\"]+)\"/\n  ],\n  'Shopee': [\n    /class=\"[^\"]*shopName[^\"]*\"[^>]*>([^<]+)</,\n    /\"shopName\":\"([^\"]+)\"/\n  ]\n};\n\nconst patterns = extractors[marketplace] || [];\n\nfor (const pattern of patterns) {\n  const match = html.match(pattern);\n  if (match && match[1]) {\n    vendedor = match[1].trim().replace(/&amp;/g, '&').replace(/&#039;/g, \"'\");\n    break;\n  }\n}\n\n// Fallback: tentar extrair do JSON-LD (dados estruturados)\nif (vendedor === 'Não identificado') {\n  const jsonLdMatch = html.match(/<script type=\"application\\/ld\\+json\">([^<]+)<\\/script>/g);\n  if (jsonLdMatch) {\n    for (const block of jsonLdMatch) {\n      try {\n        const cleanBlock = block.replace(/<script[^>]*>/, '').replace(/<\\/script>/, '');\n        const data = JSON.parse(cleanBlock);\n        if (data.seller?.name) { vendedor = data.seller.name; break; }\n        if (data.brand?.name) { vendedor = data.brand.name; break; }\n      } catch(e) {}\n    }\n  }\n}\n\nreturn [{\n  json: {\n    ...dadosProduto,\n    vendedor\n  }\n}];"
+      },
+      "id": "extract-seller",
+      "name": "👤 Extrair Vendedor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1760, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "body": {
+          "model": "claude-haiku-20240307",
+          "max_tokens": 500,
+          "messages": [
+            {
+              "role": "user",
+              "content": "=Você é um especialista em análise de produtos e preços de e-commerce brasileiro.\n\nProduto BUSCADO pelo usuário: \"{{ $json.produto_buscado }}\"\nProduto ENCONTRADO: \"{{ $json.nome_produto }}\"\nPreço encontrado: {{ $json.preco_raw }}\nMarketplace: {{ $json.marketplace }}\nVendedor: {{ $json.vendedor }}\n\nAnalise e responda APENAS em JSON válido com esta estrutura:\n{\n  \"match_score\": (número 0-100, sendo 100 = produto idêntico),\n  \"e_mesmo_produto\": (\"sim\", \"parcial\" ou \"nao\"),\n  \"caracteristicas_encontradas\": [lista de características identificadas no produto encontrado como modelo, cor, capacidade, etc],\n  \"caracteristicas_buscadas\": [lista de características do produto buscado],\n  \"caracteristicas_faltando\": [características buscadas que NÃO foram encontradas],\n  \"preco_adequado\": (\"barato\", \"adequado\", \"caro\" ou \"indefinido\"),\n  \"justificativa\": \"explicação resumida em 1 frase de por que deu esse score\",\n  \"alerta\": \"se houver algo suspeito no produto/preço, descreva aqui, senão deixe vazio\"\n}\n\nIMPORTANTE: Responda APENAS o JSON, sem texto antes ou depois."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "claude-analysis",
+      "name": "🤖 Análise IA (Claude)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1980, 300]
+    },
+    {
+      "parameters": {
+        "language": "javaScript",
+        "jsCode": "// Combinar dados do produto com análise da IA\nconst resposta_ia = $input.first().json;\nconst dadosProduto = $('👤 Extrair Vendedor').first().json;\n\nlet analise = {};\ntry {\n  // Extrair texto da resposta do Claude\n  const texto_ia = resposta_ia.content[0].text;\n  // Limpar possíveis blocos de código\n  const json_limpo = texto_ia.replace(/```json/g, '').replace(/```/g, '').trim();\n  analise = JSON.parse(json_limpo);\n} catch(e) {\n  analise = {\n    match_score: 0,\n    e_mesmo_produto: 'erro',\n    justificativa: 'Erro ao processar análise',\n    alerta: 'Falha no parsing da resposta da IA'\n  };\n}\n\n// Formatar para o Google Sheets\nconst agora = new Date();\nconst dataFormatada = agora.toLocaleDateString('pt-BR');\nconst horaFormatada = agora.toLocaleTimeString('pt-BR');\n\nreturn [{\n  json: {\n    // Identificação\n    data: dataFormatada,\n    hora: horaFormatada,\n    busca_id: dadosProduto.busca_id,\n    \n    // Busca\n    produto_buscado: dadosProduto.produto_buscado,\n    \n    // Produto encontrado  \n    nome_produto: dadosProduto.nome_produto,\n    preco: dadosProduto.preco_raw,\n    preco_numerico: dadosProduto.preco_numerico,\n    marketplace: dadosProduto.marketplace,\n    vendedor: dadosProduto.vendedor,\n    link: dadosProduto.link_produto || dadosProduto.link_google,\n    \n    // Análise IA\n    match_score: analise.match_score || 0,\n    e_mesmo_produto: analise.e_mesmo_produto || 'erro',\n    caracteristicas: (analise.caracteristicas_encontradas || []).join(', '),\n    faltando: (analise.caracteristicas_faltando || []).join(', '),\n    preco_adequado: analise.preco_adequado || 'indefinido',\n    justificativa: analise.justificativa || '',\n    alerta: analise.alerta || ''\n  }\n}];"
+      },
+      "id": "format-data",
+      "name": "📊 Formatar Dados",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2200, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "SEU_GOOGLE_SHEETS_ID_AQUI",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Resultados",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Data": "={{ $json.data }}",
+            "Hora": "={{ $json.hora }}",
+            "ID Busca": "={{ $json.busca_id }}",
+            "Produto Buscado": "={{ $json.produto_buscado }}",
+            "Nome Produto": "={{ $json.nome_produto }}",
+            "Preço": "={{ $json.preco }}",
+            "Preço Numérico": "={{ $json.preco_numerico }}",
+            "Marketplace": "={{ $json.marketplace }}",
+            "Vendedor": "={{ $json.vendedor }}",
+            "Link": "={{ $json.link }}",
+            "Match Score": "={{ $json.match_score }}",
+            "É o Mesmo Produto": "={{ $json.e_mesmo_produto }}",
+            "Características": "={{ $json.caracteristicas }}",
+            "Características Faltando": "={{ $json.faltando }}",
+            "Preço Adequado": "={{ $json.preco_adequado }}",
+            "Justificativa IA": "={{ $json.justificativa }}",
+            "Alerta": "={{ $json.alerta }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "google-sheets",
+      "name": "📈 Salvar no Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [2420, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=✅ Análise concluída!\n\nProduto: {{ $('📊 Formatar Dados').first().json.nome_produto }}\nMatch Score: {{ $('📊 Formatar Dados').first().json.match_score }}/100\nPreço: {{ $('📊 Formatar Dados').first().json.preco }}\nVendedor: {{ $('📊 Formatar Dados').first().json.vendedor }}\n\nResultados salvos no Google Sheets!",
+        "options": {}
+      },
+      "id": "form-response",
+      "name": "✅ Resposta do Formulário",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [2640, 300]
+    }
+  ],
+  "connections": {
+    "📋 Formulário de Busca": {
+      "main": [
+        [{ "node": "⚙️ Configurar Variáveis", "type": "main", "index": 0 }]
+      ]
+    },
+    "⚙️ Configurar Variáveis": {
+      "main": [
+        [{ "node": "🌐 Buscar Google Shopping", "type": "main", "index": 0 }]
+      ]
+    },
+    "🌐 Buscar Google Shopping": {
+      "main": [
+        [{ "node": "🔍 Parsear Resultados", "type": "main", "index": 0 }]
+      ]
+    },
+    "🔍 Parsear Resultados": {
+      "main": [
+        [{ "node": "🔄 Loop por Produto", "type": "main", "index": 0 }]
+      ]
+    },
+    "🔄 Loop por Produto": {
+      "main": [
+        [{ "node": "🔗 Acessar Página do Produto", "type": "main", "index": 0 }]
+      ]
+    },
+    "🔗 Acessar Página do Produto": {
+      "main": [
+        [{ "node": "🏪 Detectar Marketplace", "type": "main", "index": 0 }]
+      ]
+    },
+    "🏪 Detectar Marketplace": {
+      "main": [
+        [{ "node": "🛒 Acessar Marketplace", "type": "main", "index": 0 }]
+      ]
+    },
+    "🛒 Acessar Marketplace": {
+      "main": [
+        [{ "node": "👤 Extrair Vendedor", "type": "main", "index": 0 }]
+      ]
+    },
+    "👤 Extrair Vendedor": {
+      "main": [
+        [{ "node": "🤖 Análise IA (Claude)", "type": "main", "index": 0 }]
+      ]
+    },
+    "🤖 Análise IA (Claude)": {
+      "main": [
+        [{ "node": "📊 Formatar Dados", "type": "main", "index": 0 }]
+      ]
+    },
+    "📊 Formatar Dados": {
+      "main": [
+        [{ "node": "📈 Salvar no Google Sheets", "type": "main", "index": 0 }]
+      ]
+    },
+    "📈 Salvar no Google Sheets": {
+      "main": [
+        [{ "node": "✅ Resposta do Formulário", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "staticData": null,
+  "tags": ["scraping", "google-shopping", "precos", "concorrentes"],
+  "triggerCount": 1,
+  "updatedAt": "2026-03-03T00:00:00.000Z",
+  "versionId": "1"
+}

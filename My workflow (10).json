@@ -1,0 +1,3490 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "253b1c3f-3b78-470f-acdc-20bc6b7ef0cc",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -2000,
+        112
+      ],
+      "id": "f89fdd40-493b-45f9-8185-6948fbbca8af",
+      "name": "Webhook",
+      "webhookId": "253b1c3f-3b78-470f-acdc-20bc6b7ef0cc"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cec80d42-c7b2-485b-9b4f-fb1a4456356e",
+              "name": "body.account.name",
+              "value": "={{ $json.body.account.name }}",
+              "type": "string"
+            },
+            {
+              "id": "05e35ee4-7a69-4269-a934-f16bc7dd57ec",
+              "name": "body.account.id",
+              "value": "={{ $json.body.account.id }}",
+              "type": "number"
+            },
+            {
+              "id": "f748b1a9-990a-4788-a9d5-acc9c2e9444b",
+              "name": "body.conversation.contact_inbox.contact_id",
+              "value": "={{ $json.body.conversation.contact_inbox.contact_id }}",
+              "type": "number"
+            },
+            {
+              "id": "1952e823-001b-4b01-a006-a7c049623971",
+              "name": "body.conversation.messages[0].id",
+              "value": "={{ $json.body.conversation.messages[0].id }}",
+              "type": "number"
+            },
+            {
+              "id": "cbd51f2d-1fb7-491a-848c-3882035213e4",
+              "name": "body.conversation.messages[0].content",
+              "value": "={{ $json.body.conversation.messages[0].content }}",
+              "type": "string"
+            },
+            {
+              "id": "780ee33c-2e4a-48c1-99bb-45af2f9e531c",
+              "name": "body.conversation.messages[0].updated_at",
+              "value": "={{ $json.body.conversation.messages[0].updated_at }}",
+              "type": "string"
+            },
+            {
+              "id": "5af419f3-ca42-42f1-b01e-192d285a0f7b",
+              "name": "body.conversation.messages[0].sender.identifier",
+              "value": "={{ $json.body.conversation.messages[0].sender.identifier }}",
+              "type": "string"
+            },
+            {
+              "id": "a8e73237-dc45-434c-9210-20c098f7db01",
+              "name": "body.conversation.messages[0].sender.name",
+              "value": "={{ $json.body.conversation.messages[0].sender.name }}",
+              "type": "string"
+            },
+            {
+              "id": "08506245-085f-4015-bbb3-c99e66814c70",
+              "name": "body.conversation.messages[0].sender.phone_number",
+              "value": "={{ $json.body.conversation.messages[0].sender.phone_number }}",
+              "type": "string"
+            },
+            {
+              "id": "d251a11d-f769-45b5-bb1f-e70c5d0ae6f5",
+              "name": "body.event",
+              "value": "={{ $json.body.event }}",
+              "type": "string"
+            },
+            {
+              "id": "8b0474ac-7954-4b1a-b6ca-0d599a6365be",
+              "name": "body.conversation.messages[0].content_type",
+              "value": "={{ $json.body.conversation.messages[0].content_type }}",
+              "type": "string"
+            },
+            {
+              "id": "7415b8cd-c47d-4d75-94e1-b53dda636318",
+              "name": "body.conversation.contact_inbox.source_id",
+              "value": "={{ $json.body.conversation.contact_inbox.source_id }}",
+              "type": "string"
+            },
+            {
+              "id": "2077a572-468a-4fa7-aea1-b5d55566cb11",
+              "name": "body.conversation.status",
+              "value": "={{ $json.body.conversation.status }}",
+              "type": "string"
+            },
+            {
+              "id": "ec61828a-4636-4801-b93d-87bd5fc6f481",
+              "name": "body.account.id",
+              "value": "={{ $json.body.account.id }}",
+              "type": "number"
+            },
+            {
+              "id": "60dfbfb2-d6ef-46a3-9c2c-8bee98f23cda",
+              "name": "body.conversation.messages[0].sender_type",
+              "value": "={{ $('Webhook').item.json.body.conversation.messages[0].sender_type }}",
+              "type": "string"
+            },
+            {
+              "id": "3e3ef521-12d2-4d02-ab8d-db865f7a25b6",
+              "name": "=body.conversation.id",
+              "value": "={{ $('Webhook').item.json.body.conversation.id }}",
+              "type": "string"
+            },
+            {
+              "id": "702ff506-a57a-44cf-801c-39d6af954c43",
+              "name": "source_id_clean",
+              "value": "={{ ($('Webhook').item.json.body.source_id || '').replace('WAID:', '') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1552,
+        112
+      ],
+      "id": "e0b77102-3eee-4e81-8fcf-9c8bf52eabd9",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "content": "Humano Pause",
+        "width": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        -928
+      ],
+      "id": "ce012e97-177d-4a71-b794-e6bca0ad4cf4",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "contacts",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone_number",
+              "keyValue": "={{ $json.body.conversation.messages[0].sender.phone_number }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1104,
+        304
+      ],
+      "id": "e47ee410-7885-414a-8882-75c2384842d2",
+      "name": "Busca se Contato Existe no Supabase",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "7b7a9849-4f7b-4c14-916f-e02522ff6c14",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -880,
+        304
+      ],
+      "id": "3acefbe5-c5ab-4743-8842-734f07730bf8",
+      "name": "True - Exists >> | False - Doesnt Exist > Create"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "conversations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "contact_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        16,
+        208
+      ],
+      "id": "e65eb609-179a-4b6c-baaa-126f9283b095",
+      "name": "Busca por Conversas",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "contacts",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "chatwoot_id",
+              "fieldValue": "={{ $('Filtra In ou Out going').item.json.body.conversation.contact_inbox.contact_id }}"
+            },
+            {
+              "fieldId": "name",
+              "fieldValue": "={{ $('Filtra In ou Out going').item.json.body.conversation.messages[0].sender.name }}"
+            },
+            {
+              "fieldId": "phone_number",
+              "fieldValue": "={{ $('Filtra In ou Out going').item.json.body.conversation.messages[0].sender.phone_number }}"
+            },
+            {
+              "fieldId": "identifier",
+              "fieldValue": "={{ $('Filtra In ou Out going').item.json.body.conversation.messages[0].sender.identifier }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $('Filtra In ou Out going').item.json.body.conversation.messages[0].updated_at }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        400
+      ],
+      "id": "7af6d199-e0e1-4e61-8d26-fc0405de8381",
+      "name": "Cria Contatos no Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "conversations",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "chatwoot_conversation_id",
+              "fieldValue": "={{ $('Edit Fields').item.json.body.conversation.id }}"
+            },
+            {
+              "fieldId": "contact_id",
+              "fieldValue": "={{ $('Cria Contatos no Supabase').item.json.id }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "open"
+            },
+            {
+              "fieldId": "account_id",
+              "fieldValue": "={{ $('Edit Fields').item.json.body.account.id }}"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ $('Edit Fields').item.json.body.conversation.messages[0].updated_at }}"
+            },
+            {
+              "fieldId": "chatwoot_contact_id",
+              "fieldValue": "={{ $('Edit Fields').item.json.body.conversation.messages[0].updated_at }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        16,
+        400
+      ],
+      "id": "acbac718-88c1-49d7-8318-330be54599eb",
+      "name": "Cria Conversa",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7c5deade-c001-478b-9434-019c6ab994d9",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a262f065-7a6c-4472-8cbd-9a6ddbcdda80",
+              "name": "chatwoot_conversation_id",
+              "value": "={{ $json.chatwoot_conversation_id }}",
+              "type": "number"
+            },
+            {
+              "id": "28f95f9d-260b-46e7-b28d-6d855b19f2d7",
+              "name": "contact_id",
+              "value": "={{ $json.contact_id }}",
+              "type": "string"
+            },
+            {
+              "id": "96fdd15d-d7c5-49c8-bb1e-a2f0240634ce",
+              "name": "status",
+              "value": "={{ $json.status }}",
+              "type": "string"
+            },
+            {
+              "id": "af547aa9-e2e8-42a9-8a98-eced5832ecaf",
+              "name": "account_id",
+              "value": "={{ $json.account_id }}",
+              "type": "number"
+            },
+            {
+              "id": "c0e109ab-f8eb-44ec-9b1b-309cac3ddd4c",
+              "name": "updated_at",
+              "value": "={{ $json.updated_at }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        304
+      ],
+      "id": "bbc057e2-9b87-4af3-bfe7-c4461345d3fe",
+      "name": "Merge Conversas"
+    },
+    {
+      "parameters": {
+        "jsCode": "const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\n  const r = Math.random() * 16 | 0;\n  const v = c == 'x' ? r : (r & 0x3 | 0x8);\n  return v.toString(16);\n});\n\nreturn {\n  id: uuid\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        464,
+        304
+      ],
+      "id": "1808764c-de04-4177-9d5e-2512b7d25dd9",
+      "name": "Gera Message Id1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8117df58-96da-47f9-b5d2-66c141ecf5c5",
+              "name": "message",
+              "value": "={{ $('Edit Fields').item.json.body.conversation.messages[0].content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1584,
+        576
+      ],
+      "id": "8868f248-6f5e-4e7d-884a-8da1b73b18e2",
+      "name": "Set Text"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6255fd9c-f5cd-4d3e-a883-ceacd01532dd",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "message_created",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        -1776,
+        112
+      ],
+      "id": "402c25d6-f4ba-4c10-a32b-ba63c0a74442",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Filter').item.json.body.conversation.messages[0].attachments[0].file_type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "5afcd4d1-cd17-4356-b6f7-331725ff0235"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f590f36c-c28a-40cd-8adb-4aad153ba7aa",
+                    "leftValue": "={{ $('Filter').item.json.body.conversation.messages[0].attachments[0].file_type }}",
+                    "rightValue": "audioMessage",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        688,
+        304
+      ],
+      "id": "1a0ce54f-f2f6-4527-aee5-ae0e780cde36",
+      "name": "Checa por Attachments"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Filter').item.json.body.conversation.messages[0].attachments[0].file_type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "5afcd4d1-cd17-4356-b6f7-331725ff0235"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f590f36c-c28a-40cd-8adb-4aad153ba7aa",
+                    "leftValue": "={{ $('Filter').item.json.body.conversation.messages[0].attachments[0].file_type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "image"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        912,
+        240
+      ],
+      "id": "f0e721be-66ed-4a34-a72b-e58b67f87695",
+      "name": "Checa por Attachments1"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Webhook').item.json.body.conversation.messages[0].attachments[0].data_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1136,
+        144
+      ],
+      "id": "be0af250-4d13-48c7-98db-1399adf27e8e",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1360,
+        240
+      ],
+      "id": "59ea3cb2-32e7-41a0-b9d4-7d2a8ccd94c4",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "CQxHGcocdjZNbt7u",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Webhook').item.json.body.conversation.messages[0].attachments[0].data_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1136,
+        432
+      ],
+      "id": "3c6cf75e-c8f4-4c47-afa2-625ff9070243",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        1360,
+        432
+      ],
+      "id": "c89232ef-a084-4037-8fee-2ee0100d151b",
+      "name": "Analyze image",
+      "credentials": {
+        "openAiApi": {
+          "id": "CQxHGcocdjZNbt7u",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "audioUrls": "={{ $('Webhook').item.json.body.conversation.messages[0].attachments[0].data_url }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        1360,
+        48
+      ],
+      "id": "9843e5ec-eb19-47e5-b414-7ad379fe5311",
+      "name": "Transcribe a recording1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "nVXaWq0JomfENW6E",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8117df58-96da-47f9-b5d2-66c141ecf5c5",
+              "name": "message",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            },
+            {
+              "id": "c0d18c95-ba72-45f8-903c-515a184b1db3",
+              "name": "message",
+              "value": "={{ $json.content.parts[0].text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1584,
+        144
+      ],
+      "id": "dceb6948-97c9-4923-85a0-0013121444c5",
+      "name": "Converge Áudio"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2fc06a2d-82a6-4df7-b2ba-973642348515",
+              "name": "message",
+              "value": "={{ $json.message }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1776,
+        304
+      ],
+      "id": "115bcabb-94eb-4f49-929c-1b2953778278",
+      "name": "Converge Áudio e Texto"
+    },
+    {
+      "parameters": {
+        "tableId": "messages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "id",
+              "fieldValue": "={{ $('Gera Message Id1').item.json.id }}"
+            },
+            {
+              "fieldId": "chatwoot_message_id",
+              "fieldValue": "={{ $('Edit Fields').item.json.body.conversation.messages[0].id }}"
+            },
+            {
+              "fieldId": "conversation_id",
+              "fieldValue": "={{ $('Merge Conversas').item.json.id }}"
+            },
+            {
+              "fieldId": "content",
+              "fieldValue": "={{ $json.message }}"
+            },
+            {
+              "fieldId": "content_type",
+              "fieldValue": "={{ $('Edit Fields').item.json.body.conversation.messages[0].content_type }}"
+            },
+            {
+              "fieldId": "sender_type",
+              "fieldValue": "={{ $('Webhook').item.json.body.conversation.messages[0].sender_type }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $('Filter').item.json.body.conversation.messages[0].updated_at }}"
+            },
+            {
+              "fieldId": "from_who",
+              "fieldValue": "lead"
+            },
+            {
+              "fieldId": "chatwoot_conversation_id",
+              "fieldValue": "={{ $('Edit Fields').item.json.body.conversation.id }}"
+            },
+            {
+              "fieldId": "source_id",
+              "fieldValue": "={{ $('Edit Fields').item.json.source_id_clean }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1952,
+        304
+      ],
+      "id": "ae442ad5-60b7-4542-a797-4ff5486b02a8",
+      "name": "Cria Mensagem",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2768,
+        432
+      ],
+      "id": "5de9017e-a4b1-48f7-a7b4-d9ea7a7c8a11",
+      "name": "Wait",
+      "webhookId": "edc47138-e420-43bc-8b78-ad08c83ad9e7"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "messages",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "conversation_id",
+              "condition": "eq",
+              "keyValue": "={{ $('Merge Conversas').item.json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3152,
+        400
+      ],
+      "id": "beefc388-e71b-458e-8ad3-a64566d96d41",
+      "name": "Get many rows",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3600,
+        304
+      ],
+      "id": "78886429-9dee-43a8-bf2e-4c426eb9691a",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Cria Mensagem').item.json.chatwoot_message_id }}",
+                    "rightValue": "={{ $('Get many rows').all().last().json.chatwoot_message_id }}",
+                    "operator": {
+                      "type": "number",
+                      "operation": "lt"
+                    },
+                    "id": "ff904482-bc0d-48db-80d4-ad253c6ac737"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Mensagem Atual é Antes da Última"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "87b11075-855e-49c1-9dfa-e74b638b2fc2",
+                    "leftValue": "={{ $('Cria Mensagem').item.json.chatwoot_message_id }}",
+                    "rightValue": "={{ $('Get many rows').all().last().json.chatwoot_message_id }}",
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Mensagem Atual é Igual a Última"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "493d9f5d-53c3-480c-bc3f-327b9e4e2792",
+                    "leftValue": "={{ $('Cria Mensagem').item.json.chatwoot_message_id }}",
+                    "rightValue": "={{ $('Get many rows').all().last().json.chatwoot_message_id }}",
+                    "operator": {
+                      "type": "number",
+                      "operation": "gt"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        3376,
+        384
+      ],
+      "id": "6058672a-2c01-4853-95a2-3bff71b821db",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "conversation_id"
+            },
+            {
+              "fieldToAggregate": "content"
+            },
+            {
+              "fieldToAggregate": "created_at"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        3600,
+        496
+      ],
+      "id": "a8a30e4e-04b6-4898-aa07-39847437b84b",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "76efb031-c650-4db5-b365-d6dde00cddd6",
+              "name": "conversation_id",
+              "value": "={{ $json.conversation_id }}",
+              "type": "array"
+            },
+            {
+              "id": "e8687110-5407-4d81-aa0f-a876d5169b37",
+              "name": "content",
+              "value": "={{ $json.content }}",
+              "type": "array"
+            },
+            {
+              "id": "157f0d1c-1754-49a7-acff-31d96b6e1f7b",
+              "name": "created_at",
+              "value": "={{ $json.created_at }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3824,
+        496
+      ],
+      "id": "bad9f9c3-cc12-411c-8e2b-70f2450cb2a6",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Savarina, voce recebeu uma nova mensagem!\n\nMensagens Agrupadas + Contexto Completo:\n{{ $json.content }}\n\nTimeStamp das Mensagens Agrupadas:\n\n{{ $json.created_at }}\n\nID da Conversation no ChatWoot: {{ $json.conversation_id[0] }}",
+        "hasOutputParser": true,
+        "needsFallback": true,
+        "options": {
+          "systemMessage": "=PROMPT DE COMANDO\n\nSESSION ID: {{ $json.conversation_id[0] }}\n\nAqui estão os detalhes da mensagem que acabou de chegar:\n\nConteúdo das Mensagens Agrupadas: {{ $json.content }}\n\nNome do Cliente: {{ $('True - Exists >> | False - Doesnt Exist > Create').item.json.name }}\n\nTelefone/ID: {{ $('Edit Fields').item.json.body.conversation.messages[0].sender.phone_number }}\n\nHorário (ISO): {{ $('Edit Fields').item.json.body.conversation.messages[0].updated_at }}\n\nUm atendimento de excelência para uma clínica de transplante capilar precisa equilibrar **acolhimento emocional** (já que a calvície mexe com a autoestima) e **autoridade técnica**.\n\nAbaixo, estruturei um fluxo completo, desde o primeiro \"olá\" até o acompanhamento pós-operatório.\n\n---\n\n## 1. Primeiro Contato e Triagem (Lead)\n\nO objetivo aqui é agilidade e empatia. Geralmente, o contato inicial ocorre via WhatsApp ou Direct.\n\n* **Acolhimento:** Use uma saudação calorosa e personalizada. Evite respostas automáticas frias.\n* **Qualificação/Triagem:** Peça fotos (frente, topo, laterais e nuca) e faça perguntas básicas:\n* \"Há quanto tempo você percebe a queda?\"\n* \"Já realizou algum tratamento clínico antes?\"\n\n\n* **Encantamento:** Envie um vídeo curto do médico ou um institucional da clínica mostrando a tecnologia utilizada.\n\n---\n\n## 2. Avaliação Médica (Presencial ou Online)\n\nEste é o momento de gerar confiança e alinhar expectativas.\n\n* **Análise de Visagismo:** O médico deve discutir o desenho da linha frontal (hairline) respeitando as proporções do rosto do paciente.\n* **Explicação Técnica:** Explicar a diferença entre as técnicas (como a **FUE** - *Follicular Unit Extraction*) de forma simples.\n* **Gerenciamento de Expectativa:** Seja honesto sobre a densidade possível. Nem todo paciente tem área doadora para uma cobertura total em uma única sessão.\n\n---\n\n## 3. Proposta Comercial e Fechamento\n\nApós o diagnóstico, o consultor comercial assume para detalhar o investimento.\n\n* **Transparência:** Apresente os custos de forma clara (procedimento, anestesia, equipe, medicamentos).\n* **Facilitação:** Ofereça planos de parcelamento ou condições especiais para fechamento imediato.\n* **Logística:** Se a clínica recebe pacientes de fora, ofereça auxílio com reserva de hotéis ou traslados.\n\n---\n\n## 4. Pré-Operatório\n\nO foco aqui é segurança e redução da ansiedade.\n\n* **Checklist de Exames:** Envie uma lista clara dos exames de sangue e ECG necessários.\n* **Manual de Instruções:** Um PDF ou vídeo explicando o que evitar (bebida alcoólica, cigarro, certos medicamentos) nos dias anteriores.\n* **Confirmação:** Um contato humanizado 48h antes para tirar dúvidas de última hora.\n\n---\n\n## 5. O Dia do Procedimento\n\nA experiência do paciente deve ser de \"SPA\", não de \"Hospital\".\n\n* **Recepção:** Café de boas-vindas e kit conforto (chinelos, roupão personalizado).\n* **Ambiente:** Sala climatizada, música ambiente ou acesso a streaming (Netflix/YouTube) durante a extração.\n* **Alimentação:** Cardápio leve e de qualidade para os intervalos.\n* **Atenção:** O médico deve estar presente e acessível durante todo o processo.\n\n---\n\n## 6. Pós-Operatório e Acompanhamento\n\nO transplante capilar não termina na cirurgia; o resultado final leva até 12 meses.\n\n| Período | Ação da Clínica |\n| --- | --- |\n| **24h depois** | Primeiro retorno para lavagem técnica e retirada do curativo. |\n| **7 a 10 dias** | Retirada de crostas (presencial ou via vídeo chamada). |\n| **1 a 3 meses** | Fase do \"eflúvio\" (o cabelo cai para crescer). Enviar mensagem de suporte emocional explicando que é normal. |\n| **6 meses** | Consulta de acompanhamento para ver o crescimento parcial. |\n| **1 ano** | Entrega do resultado final e fotos de \"Antes e Depois\". |\n\n---\n\n### Dicas de Ouro para sua Equipe:\n\n> **Empatia acima de tudo:** Lembre-se que o paciente pode estar inseguro. Use frases como \"Entendemos como isso é importante para você\" e \"Estamos juntos em cada etapa do seu novo visual\".\n\n> **Agilidade no Pós:** No pós-operatório, qualquer coceira ou vermelhidão gera pânico. Tenha um canal de \"Urgência\" onde o paciente seja respondido em poucos minutos.\n\n---\n\nPROTOCOLO DE USO DE TOOLS (OBRIGATÓRIO)\n\nVocê não deve tentar adivinhar o passado. Siga esta ordem:\n\n1. BUSCAR CONTEXTO (Passo Zero):\n\nANTES de formular qualquer resposta, use a tool de busca no SUPABASE (Get many) para ler as mensagens anteriores vinculadas a estA CONVERSATION ID, NA TABELA DE MESSAGES.\n\nIdentifique se o paciente já está em atendimento, está retomando um atendimento paralisado, se é uma continuação de assunto, um primeiro contato, um contato pós primeira cirurgia/atendimento ou apenas um cumprimento inicial.\n\n2. GERENCIAR STATUS:\n\nVocê é responsável por atualizar o status da conversa do paciente gerando como interpretação do contexto entre as opções:\n\nUse 'pending' enquanto você (IA) estiver conduzindo o atendimento inicial.\n\nUse 'open' APENAS quando transferir para um atendente humano (secretária, recepção ou profissional de saúde).\n\nUse 'resolved' quando a solicitação estiver completamente resolvida.\n\nREGRAS DE NEGÓCIO (PIPELINE)\n\n1. Solicitação de Humano / Complexidade Alta:\n\nGatilhos:\n\nPaciente pede para falar com uma pessoa (“atendente”, “secretária”, “alguém do consultório”).\n\nQuestões clínicas, diagnósticas ou qualquer assunto que não possa ser tratado pela assistente virtual.\n\nAção:\n\nResponda:\n\n\"Entendi, vou transferir você para um de nossos atendentes do consultório.\"\n\nExecução:\n\nEnvie como output o status a ser atualizado.\n\nNota:\n\nApós mover para 'open', não responda mais nada.\n\n2. Finalização:\n\nGatilhos: não irá ser usado por enquanto.\n\nAção: nenhuma.\n\n3. Áudios:\n\nSe o campo \"Conteúdo (Se for Áudio)\" estiver preenchido, trate-o como texto normal e responda sempre em texto.\n\nTOM DE VOZ\n\nSeja clara, objetiva e acolhedora.\n\nLinguagem profissional, humana e tranquila (clima de recepção médica).\n\nEvite textos longos ou técnicos demais.\n\nAja como uma atendente eficiente de consultório, não como um robô genérico.\n\n✅ PROTOCOLO DE AGENDA (Google Calendar via MCP) — OBRIGATÓRIO\n\nObjetivo: agendar/remarcar com segurança e sem conflitos.\n\nRegras duras:\n\nNunca criar/update/delete sem antes localizar/verificar disponibilidade.\n\nNunca executar create/update/delete sem confirmação explícita do paciente (“pode confirmar”, “sim”, “fechado”, etc.).\n\nSempre operar no fuso America/Sao_Paulo.\n\nSe o paciente disser “segunda”, “amanhã”, “de manhã”, etc., confirmar a data numérica e uma faixa de horário antes de chamar tools.\n\nA) DADOS MÍNIMOS PARA AGENDAR\n\nSó prossiga para tools se tiver:\n\nNome (ou confirmar como o paciente quer ser chamado)\n\nTelefone\n\nData (dd/mm ou data inequívoca)\n\nHorário (ou faixa: manhã/tarde/noite)\n\nSe faltar algo, pergunte de forma curta.\n\nB) QUAL TOOL USAR (mapa de decisão)\n\n1) Primeiro agendamento\n\nPasso 1 (obrigatório): usar availability (ou getMany por período se necessário) para checar se está livre.\n\nPasso 2: oferecer 1 a 3 opções de horário livre.\n\nPasso 3: após “sim”, usar create.\n\n2) Remarcação\n\nPasso 1: usar getMany (janela padrão: últimos 7 dias e próximos 90 dias) para encontrar o evento existente do paciente.\n\nPasso 2: usar availability para checar o novo horário desejado.\n\nPasso 3: após confirmação, usar update mantendo título e dados do paciente.\n\n3) Cancelamento\n\nPasso 1: usar getMany para localizar o evento.\n\nPasso 2: pedir confirmação final (“Confirmo o cancelamento, tudo bem?”).\n\nPasso 3: usar delete apenas após confirmação.\n\n4) “Quando é minha consulta?”\n\nUsar getMany e responder com a data/hora exatas.\n\nC) PADRÕES DE CRIAÇÃO DO EVENTO (create)\n\nDuração padrão: 30 minutos (ajuste se a clínica usar outro).\n\nTítulo obrigatório: [AVALIAÇÃO] {Nome} - {Telefone}\n\nDescrição: resumo do pedido + origem (WhatsApp) + conversation_id.\n\nSe o horário estiver ocupado: não criar, oferecer próximos horários livres.\n\nD) PADRÕES DE BUSCA (getMany)\n\nJanela padrão para localizar evento do paciente: -7 dias até +90 dias.\n\nFiltrar por nome/telefone quando possível (se a tool suportar).\n\nSe houver mais de um evento parecido, perguntar qual data o paciente lembra antes de atualizar/deletar.\n\nE) COMPORTAMENTO EM CASO DE ERRO/INCERTEZA\n\nSe a tool falhar, responda pedindo um momento e ofereça alternativa (“posso te sugerir outros horários?”).\n\nSe houver risco (evento não encontrado, múltiplos resultados, dúvida de identidade): não altere nada e transfira para humano.\n\nPara agendamentos, sempre responda com:\n\n[ACTION]\nstatus: pending|open|resolved\ncalendar_action: none|check_availability|create|update|delete|get_events\npatient_name: ...\npatient_phone: ...\nrequested_date: ...\nrequested_time: ...\nnotes: ...\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        4048,
+        496
+      ],
+      "id": "541bc29a-991f-4c94-bd1b-2e60e4915754",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5.1",
+          "mode": "list",
+          "cachedResultName": "gpt-5.1"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        3824,
+        720
+      ],
+      "id": "2bf3a6c6-1210-4ca9-96d0-c41f8facf056",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "CQxHGcocdjZNbt7u",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.conversation_id[0] }}",
+        "contextWindowLength": 30
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.5,
+      "position": [
+        4080,
+        720
+      ],
+      "id": "29851e3e-1813-483c-9bd0-aec6de3e2a01",
+      "name": "Redis Chat Memory",
+      "credentials": {
+        "redis": {
+          "id": "GRADvb35nLHzI1DM",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "messages",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "conversation_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.conversation_id[0] }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        4208,
+        720
+      ],
+      "id": "f631dc76-aa81-40ac-b840-5ecfb6964320",
+      "name": "Get many rows in Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {
+          "safetySettings": {
+            "values": [
+              {
+                "category": "HARM_CATEGORY_HARASSMENT"
+              }
+            ]
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3952,
+        720
+      ],
+      "id": "84c30ff4-df98-4729-8d03-2b42f883a4fb",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "nVXaWq0JomfENW6E",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"mensagem_resposta_ia\": \"Perfeito! Tenho horários na terça-feira às 14:00, 14:30 ou 15:00. Qual você prefere para eu confirmar?\",\n  \"timestamp_formatadoiso\": \"2026-02-07T15:01:11Z\",\n  \"label\": \"agendando\",\n  \"statusdaconversation\": \"pending\",\n\n  \"handoff_to_human\": false,\n  \"calendar_action\": \"check_availability\",\n  \"intent\": \"schedule\",\n\n  \"patient\": {\n    \"name\": \"Fulano\",\n    \"phone\": \"+55...\"\n  },\n  \"requested\": {\n    \"date\": \"2026-02-10\",\n    \"time\": \"14:00\",\n    \"timezone\": \"America/Sao_Paulo\",\n    \"duration_minutes\": 30\n  },\n  \"event\": {\n    \"id\": null,\n    \"title\": null\n  },\n  \"notes\": \"Paciente pediu terça à tarde; checar disponibilidade e sugerir 14:00/14:30/15:00.\"\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        4464,
+        720
+      ],
+      "id": "e70cc8c0-ea42-4431-87bb-e8f3134d4e7e",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Mané Garrincha",
+        "remoteJid": "={{ $('Edit Fields').item.json.body.conversation.messages[0].sender.phone_number }}",
+        "messageText": "={{ $json.output.mensagem_resposta_ia }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        4464,
+        448
+      ],
+      "id": "4f30fd84-2053-47f3-a50f-34e4c58115f3",
+      "name": "Enviar texto",
+      "credentials": {
+        "evolutionApi": {
+          "id": "6ykY9tf3T4pomW6f",
+          "name": "Evolution account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://chatsales-n8n.yvssrw.easypanel.host/mcp/57fdf836-9c0c-477d-adda-7edbf147e064",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        4336,
+        720
+      ],
+      "id": "3a4376d8-1909-483e-9de2-42f47579eb36",
+      "name": "MCP Client"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b66817ff-2bbb-483c-824c-610ff26ea195",
+                    "leftValue": "={{ $('Webhook').item.json.body.message_type }}",
+                    "rightValue": "outgoing",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "outgoing"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "4baaabee-c6ea-4c48-ade0-93f6d5830820",
+                    "leftValue": "={{ $('Webhook').item.json.body.message_type }}",
+                    "rightValue": "outgoing",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -1328,
+        112
+      ],
+      "id": "921a4a7e-6673-45b2-8611-3a66fc08ab09",
+      "name": "Filtra In ou Out going"
+    },
+    {
+      "parameters": {
+        "jsCode": "const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\n  const r = Math.random() * 16 | 0;\n  const v = c == 'x' ? r : (r & 0x3 | 0x8);\n  return v.toString(16);\n});\n\nreturn {\n  id: uuid\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5792,
+        -608
+      ],
+      "id": "7d844b59-76c7-4dea-868e-0a98732bb9f9",
+      "name": "Gera Message Id_AI2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\n  const r = Math.random() * 16 | 0;\n  const v = c == 'x' ? r : (r & 0x3 | 0x8);\n  return v.toString(16);\n});\n\nreturn {\n  id: uuid\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        400
+      ],
+      "id": "be5d22ac-c67b-499a-9199-3aac82ec5732",
+      "name": "Gera Conversation ID"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.created_at }}",
+                    "rightValue": "={{ ($('Filter').item.json.body.source_id || '').replace('WAID:', '') }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "empty",
+                      "singleValue": true
+                    },
+                    "id": "ab7f18ec-64a7-4ea2-8d96-f32349aae239"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Não Duplicata"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "095aed3d-5868-4b6b-a7d4-5de1e10c8b3f",
+                    "leftValue": "={{ $json.created_at }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Duplicata"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -704,
+        -368
+      ],
+      "id": "25ad2604-0d41-4659-bd6c-f1039568f58e",
+      "name": "Switch3"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "messages",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "source_id",
+              "keyValue": "={{ ($('Filter').item.json.body.source_id || '').replace('WAID:', '') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1104,
+        -80
+      ],
+      "id": "410f4acf-aad8-427f-b5c4-62813a8252ee",
+      "name": "Get a row",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -368
+      ],
+      "id": "4f778ac9-caa8-49d5-999d-5f41f43e3a46",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\n  const r = Math.random() * 16 | 0;\n  const v = c == 'x' ? r : (r & 0x3 | 0x8);\n  return v.toString(16);\n});\n\nreturn {\n  id: uuid\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -704,
+        -176
+      ],
+      "id": "e020755b-3e82-40ea-b41b-6447cfefcc54",
+      "name": "Gera Message Id2"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "conversations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "contact_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        -176
+      ],
+      "id": "8196ef22-51c3-4fd4-8858-0227d4763256",
+      "name": "Busca por Conversas1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "contacts",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone_number",
+              "keyValue": "={{ $('Filter').item.json.body.conversation.meta.sender.phone_number }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        -176
+      ],
+      "id": "651c7747-f7f8-42fd-891d-bededc880042",
+      "name": "Busca se Contato Existe no Supabase1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.created_at }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "cf2ce59b-b6f6-4721-b906-23e2106e3c3a"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "IA"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c62087aa-f61b-4e39-a98e-8e5ca3d12bf8",
+                    "leftValue": "={{ $json.created_at }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Humano"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -928,
+        -272
+      ],
+      "id": "c80cc5fa-d6e8-4fd5-9316-2e0b8b407fd4",
+      "name": "Procura se é Mensagem da IA"
+    },
+    {
+      "parameters": {
+        "tableId": "messages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "id",
+              "fieldValue": "={{ $('Gera Message Id2').item.json.id }}"
+            },
+            {
+              "fieldId": "chatwoot_message_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.id }}"
+            },
+            {
+              "fieldId": "conversation_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "content",
+              "fieldValue": "={{ $('Filtra In ou Out going').item.json.body.conversation.messages[0].content }}"
+            },
+            {
+              "fieldId": "content_type",
+              "fieldValue": "={{ $('Filtra In ou Out going').item.json.body.conversation.messages[0].content_type }}"
+            },
+            {
+              "fieldId": "sender_type",
+              "fieldValue": "={{ $('Filtra In ou Out going').item.json.body.conversation.messages[0].sender_type }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $('Filtra In ou Out going').item.json.body.conversation.messages[0].updated_at }}"
+            },
+            {
+              "fieldId": "from_who",
+              "fieldValue": "human"
+            },
+            {
+              "fieldId": "chatwoot_conversation_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.conversation.id }}"
+            },
+            {
+              "fieldId": "source_id",
+              "fieldValue": "={{ ($('Filter').item.json.body.source_id || '').replace('WAID:', '') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        -176
+      ],
+      "id": "0d35f2e2-949f-4c79-ad4f-2cc887d93615",
+      "name": "Cria Mensagem do Humano",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ new Date().toISOString() }}",
+                    "rightValue": "={{ $json.paused_until }}",
+                    "operator": {
+                      "type": "dateTime",
+                      "operation": "before"
+                    },
+                    "id": "669cde08-2f57-47e8-9d99-8c8b7d0050ad"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Ainda Travado"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "04bc63d0-ebcb-484e-a1a7-687f8f22fa5b",
+                    "leftValue": "={{ new Date().toISOString() }}",
+                    "rightValue": "={{ $json.paused_until }}",
+                    "operator": {
+                      "type": "dateTime",
+                      "operation": "afterOrEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Destravado"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        2592,
+        80
+      ],
+      "id": "81371dbf-0a64-4fdf-8de3-584443770470",
+      "name": "Switch4"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3072,
+        160
+      ],
+      "id": "73e10d3d-a258-4390-bfc1-70c5dc19e03a",
+      "name": "No Operation, do nothing2"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "ai_pauses",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "conversation_id",
+              "keyValue": "={{ $json.conversation_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2128,
+        304
+      ],
+      "id": "fe1750ad-f4da-4ba3-bdad-c3b453ff4241",
+      "name": "Busca Bloqueio de Respostas da IA",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\n  const r = Math.random() * 16 | 0;\n  const v = c == 'x' ? r : (r & 0x3 | 0x8);\n  return v.toString(16);\n});\n\nreturn {\n  id: uuid\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -656,
+        400
+      ],
+      "id": "29749981-2e71-4cc0-a2dc-6b7bf2d4e5c9",
+      "name": "Gera Contact Id"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "d75ccea0-29e9-4747-acfc-5b3b9fe5f2f7",
+              "leftValue": "={{ $json.paused_until }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2288,
+        304
+      ],
+      "id": "2fc43ebc-8531-4e04-a09f-523ff6460963",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://chatsales-chatwoot.yvssrw.easypanel.host/api/v1/accounts/1/conversations/{{ $('Edit Fields').item.json.body.conversation.id }}/toggle_status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "api_access_token",
+              "value": "SXe3DqFiM2ZmAQa9LHJZTS5f"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"status\": \"pending\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        5264,
+        -624
+      ],
+      "id": "8805b6c9-731d-44bd-a942-7590098aacb0",
+      "name": "Set Status to Pending"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        6016,
+        160
+      ],
+      "id": "99a5d43a-2bb4-437a-8a87-95f5a415e429",
+      "name": "Keep Status Open"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://chatsales-chatwoot.yvssrw.easypanel.host/api/v1/accounts/1/conversations/{{ $('Edit Fields').item.json.body.conversation.id }}/toggle_status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "api_access_token",
+              "value": "SXe3DqFiM2ZmAQa9LHJZTS5f"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"status\": \"open\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        5280,
+        144
+      ],
+      "id": "585e1e02-97ad-4d95-abc6-1aa3aa21ed0f",
+      "name": "Set Status to open"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ec6b4d44-eb94-4bad-808a-007983879cc8",
+              "leftValue": "={{ $json.success }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        4672,
+        144
+      ],
+      "id": "c2365ba1-483b-4a08-81b8-08edf7951f64",
+      "name": "Mensagem enviada com sucesso?"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "ai_pauses",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "conversation_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.conversation_id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -320
+      ],
+      "id": "79a64407-5e1f-40e2-8a4e-40a791ef7536",
+      "name": "Busca por Trava de IA",
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.paused_until }}",
+                    "rightValue": "=",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "669cde08-2f57-47e8-9d99-8c8b7d0050ad"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Existe Trava "
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "044ae9d8-f77b-44c5-af10-9553846b7399",
+                    "leftValue": "={{ $json.paused_until }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Não Existe Trava "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        544,
+        -336
+      ],
+      "id": "b52c1e9a-84ef-427d-b1f4-e4b5df6c963d",
+      "name": "Se Existe"
+    },
+    {
+      "parameters": {
+        "tableId": "ai_pauses",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "conversation_id",
+              "fieldValue": "={{ $('Cria Mensagem do Humano').item.json.conversation_id }}"
+            },
+            {
+              "fieldId": "paused_until",
+              "fieldValue": "={{ new Date(Date.now() + 10 * 60 * 1000).toISOString() }}"
+            },
+            {
+              "fieldId": "paused_reason",
+              "fieldValue": "human_message"
+            },
+            {
+              "fieldId": "paused_by",
+              "fieldValue": "={{ $('Cria Mensagem do Humano').item.json.from_who }}"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ $('Cria Mensagem do Humano').item.json.created_at }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        864,
+        -272
+      ],
+      "id": "549cb5e2-048f-47de-8934-f297b682124a",
+      "name": "Cria Trava de IA por 10 min",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "ai_pauses",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "conversation_id",
+              "condition": "eq",
+              "keyValue": "={{ $('Busca por Conversas1').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "paused_until",
+              "fieldValue": "={{ new Date(Date.now() + 10 * 60 * 1000).toISOString() }}"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ new Date().toISOString() }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        864,
+        -544
+      ],
+      "id": "b67db3c1-f36e-4caa-b27b-21b9cadd5030",
+      "name": "Se Existe Trava Ativa ou Não - Atualiza por 10 min",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://chatsales-chatwoot.yvssrw.easypanel.host/api/v1/accounts/1/conversations/{{ $('Edit Fields').item.json.body.conversation.id }}/toggle_status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "api_access_token",
+              "value": "SXe3DqFiM2ZmAQa9LHJZTS5f"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"status\": \"pending\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2448,
+        -416
+      ],
+      "id": "39fcfde8-2961-451d-9a46-69e78922fa8d",
+      "name": "Set Status to Pending1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://chatsales-chatwoot.yvssrw.easypanel.host/api/v1/accounts/1/conversations/{{ $('Edit Fields').item.json.body.conversation.id }}/toggle_status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "api_access_token",
+              "value": "SXe3DqFiM2ZmAQa9LHJZTS5f"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"status\": \"open\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1408,
+        -416
+      ],
+      "id": "a72f2661-67d0-4b46-a374-8c2e537ba925",
+      "name": "Set Status to open1"
+    },
+    {
+      "parameters": {
+        "tableId": "messages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "conversation_id",
+              "fieldValue": "={{ $('Edit Fields1').item.json.conversation_id[0] }}"
+            },
+            {
+              "fieldId": "content",
+              "fieldValue": "={{ $('Enviar texto').item.json.data.message.conversation }}"
+            },
+            {
+              "fieldId": "content_type",
+              "fieldValue": "=text"
+            },
+            {
+              "fieldId": "sender_type",
+              "fieldValue": "User"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $('AI Agent').item.json.output.timestamp_formatadoiso }}"
+            },
+            {
+              "fieldId": "from_who",
+              "fieldValue": "ai"
+            },
+            {
+              "fieldId": "chatwoot_conversation_id",
+              "fieldValue": "={{ $('Edit Fields').item.json.body.conversation.id }}"
+            },
+            {
+              "fieldId": "chatwoot_message_id",
+              "fieldValue": "999999999999"
+            },
+            {
+              "fieldId": "source_id",
+              "fieldValue": "={{ $('Enviar texto').item.json.data.key.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        6048,
+        -576
+      ],
+      "id": "8e266504-e96c-4811-a045-3e88a21c9d5f",
+      "name": "Cria AI Message",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "638ac985-4708-4dc3-9af0-44c5dd3ce7d7",
+              "name": "conversation_id",
+              "value": "={{ $json.conversation_id }}",
+              "type": "string"
+            },
+            {
+              "id": "bfc85f0d-767a-41ab-a44f-48f2ffaa572a",
+              "name": "paused_until",
+              "value": "={{ $json.paused_until }}",
+              "type": "string"
+            },
+            {
+              "id": "e37ee302-6167-4411-b08f-61ae552ca65b",
+              "name": "paused_reason",
+              "value": "={{ $json.paused_reason }}",
+              "type": "string"
+            },
+            {
+              "id": "e1f20f89-73bf-41cc-83eb-d890a30b9639",
+              "name": "paused_by",
+              "value": "={{ $json.paused_by }}",
+              "type": "string"
+            },
+            {
+              "id": "00279497-e992-4d12-bd61-4780aff75a33",
+              "name": "updated_at",
+              "value": "={{ $json.updated_at }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1168,
+        -416
+      ],
+      "id": "e41abaf1-7dc7-482b-acf0-923226753c15",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "conversations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Merge Conversas').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $json.payload.current_status }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        5504,
+        -656
+      ],
+      "id": "244d6abf-93e8-45a4-bd28-bd490603c6a3",
+      "name": "Atualiza Status no Supabase Pending",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "conversations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "chatwoot_conversation_id",
+              "condition": "eq",
+              "keyValue": "={{ $('Merge Conversas').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $json.payload.current_status }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        5584,
+        144
+      ],
+      "id": "9b7c278e-06fc-48bd-b589-78ba730d5e59",
+      "name": "Atualiza Status no Supabase Open",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "conversations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Busca por Conversas1').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $json.payload.current_status }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1616,
+        -416
+      ],
+      "id": "11cabee4-a3f3-4641-8d36-777c288f6cbc",
+      "name": "Atualiza Status no Supabase Open - msg humana",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://chatsales-chatwoot.yvssrw.easypanel.host/api/v1/accounts/1/conversations/{{ $('Edit Fields').item.json.body.conversation.id }}/toggle_status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "api_access_token",
+              "value": "SXe3DqFiM2ZmAQa9LHJZTS5f"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"status\": \"open\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        5328,
+        -272
+      ],
+      "id": "7a3a9373-1908-4f1c-84fd-39b72fa60041",
+      "name": "Set Status to open2"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "conversations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "chatwoot_conversation_id",
+              "condition": "eq",
+              "keyValue": "={{ $('Merge Conversas').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $json.payload.current_status }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        5632,
+        -272
+      ],
+      "id": "6843f574-252a-4be5-9e1e-393957f9c663",
+      "name": "Atualiza Status no Supabase Open1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\n  const r = Math.random() * 16 | 0;\n  const v = c == 'x' ? r : (r & 0x3 | 0x8);\n  return v.toString(16);\n});\n\nreturn {\n  id: uuid\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5856,
+        -272
+      ],
+      "id": "2b986914-4937-4b95-af54-cee29c8eb130",
+      "name": "Gera Message Id_AI"
+    },
+    {
+      "parameters": {
+        "tableId": "messages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "conversation_id",
+              "fieldValue": "={{ $('Edit Fields1').item.json.conversation_id[0] }}"
+            },
+            {
+              "fieldId": "content",
+              "fieldValue": "={{ $('Enviar texto').item.json.data.message.conversation }}"
+            },
+            {
+              "fieldId": "content_type",
+              "fieldValue": "=text"
+            },
+            {
+              "fieldId": "sender_type",
+              "fieldValue": "User"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $('AI Agent').item.json.output.timestamp_formatadoiso }}"
+            },
+            {
+              "fieldId": "from_who",
+              "fieldValue": "ai"
+            },
+            {
+              "fieldId": "chatwoot_conversation_id",
+              "fieldValue": "={{ $('Edit Fields').item.json.body.conversation.id }}"
+            },
+            {
+              "fieldId": "chatwoot_message_id",
+              "fieldValue": "999999999999"
+            },
+            {
+              "fieldId": "source_id",
+              "fieldValue": "={{ $('Enviar texto').item.json.data.key.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        6112,
+        -240
+      ],
+      "id": "6bf94896-1743-44c6-83e6-0f6088773774",
+      "name": "Cria AI Message1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "ssSRG4JUddyypjyv",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.status }}",
+                    "rightValue": "PENDING",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "0a69eb19-ccd0-442d-9868-737962110da8"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "PENDING"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c1a7151b-3295-4caf-bc91-30372a2ca6b7",
+                    "leftValue": "={{ $json.data.status }}",
+                    "rightValue": "OPEN",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "OPEN"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "311bd341-f253-4269-b7a8-80f951f2c06b",
+                    "leftValue": "={{ $json.data.status }}",
+                    "rightValue": "RESOLVED",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "RESOLVED"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        4896,
+        -352
+      ],
+      "id": "f66001ac-43be-44fa-b7f3-0a6f7fca3008",
+      "name": "Switch"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "chatsales-n8n.yvssrw.easypanel.host",
+            "user-agent": "rest-client/2.1.0 (linux-musl x86_64) ruby/3.4.4p34",
+            "content-length": "4673",
+            "accept": "application/json",
+            "accept-encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "chatsales-n8n.yvssrw.easypanel.host",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "11f40234b09f",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "account": {
+              "id": 1,
+              "name": "Sales Tec"
+            },
+            "additional_attributes": {},
+            "content_attributes": {
+              "in_reply_to": null
+            },
+            "content_type": "text",
+            "content": "teste",
+            "conversation": {
+              "additional_attributes": {},
+              "can_reply": true,
+              "channel": "Channel::Api",
+              "contact_inbox": {
+                "id": 460,
+                "contact_id": 307,
+                "inbox_id": 2,
+                "source_id": "52d9dc1b-f302-46d2-95af-e6a543ec7789",
+                "created_at": "2026-02-07T17:23:06.969Z",
+                "updated_at": "2026-02-07T17:23:06.969Z",
+                "hmac_verified": false,
+                "pubsub_token": "AGF3octU522pkqx4BHnXN9Pp"
+              },
+              "id": 153,
+              "inbox_id": 2,
+              "messages": [
+                {
+                  "id": 3631,
+                  "content": "teste",
+                  "account_id": 1,
+                  "inbox_id": 2,
+                  "conversation_id": 153,
+                  "message_type": 0,
+                  "created_at": 1770569361,
+                  "updated_at": "2026-02-08T16:49:21.658Z",
+                  "private": false,
+                  "status": "sent",
+                  "source_id": "WAID:3EB0A1EEDB74CADED7AE6B",
+                  "content_type": "text",
+                  "content_attributes": {
+                    "in_reply_to": null
+                  },
+                  "sender_type": "Contact",
+                  "sender_id": 307,
+                  "external_source_ids": {},
+                  "additional_attributes": {},
+                  "processed_message_content": "teste",
+                  "sentiment": {},
+                  "conversation": {
+                    "assignee_id": null,
+                    "unread_count": 1,
+                    "last_activity_at": 1770569361,
+                    "contact_inbox": {
+                      "source_id": "52d9dc1b-f302-46d2-95af-e6a543ec7789"
+                    }
+                  },
+                  "sender": {
+                    "additional_attributes": {
+                      "avatar_url_hash": "a304b0aca2d35c4bef6f3f593479ee728abe7dfb4f8484405b52089c39d53932",
+                      "last_avatar_sync_at": "2026-02-08T15:52:31Z"
+                    },
+                    "custom_attributes": {},
+                    "email": null,
+                    "id": 307,
+                    "identifier": "553299009727@s.whatsapp.net",
+                    "name": "Fabio",
+                    "phone_number": "+553299009727",
+                    "thumbnail": "https://chatsales-chatwoot.yvssrw.easypanel.host/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbzhDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4568e26d14ba052dde2572418b871f480d0993bb/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWZvdyIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--9ccc687fe4f869216e0e285ebdaea17d341b1b00/461842945_842712438027365_2758685753677227353_n.jpg",
+                    "blocked": false,
+                    "type": "contact"
+                  }
+                }
+              ],
+              "labels": [],
+              "meta": {
+                "sender": {
+                  "additional_attributes": {
+                    "avatar_url_hash": "a304b0aca2d35c4bef6f3f593479ee728abe7dfb4f8484405b52089c39d53932",
+                    "last_avatar_sync_at": "2026-02-08T15:52:31Z"
+                  },
+                  "custom_attributes": {},
+                  "email": null,
+                  "id": 307,
+                  "identifier": "553299009727@s.whatsapp.net",
+                  "name": "Fabio",
+                  "phone_number": "+553299009727",
+                  "thumbnail": "https://chatsales-chatwoot.yvssrw.easypanel.host/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbzhDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4568e26d14ba052dde2572418b871f480d0993bb/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWZvdyIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--9ccc687fe4f869216e0e285ebdaea17d341b1b00/461842945_842712438027365_2758685753677227353_n.jpg",
+                  "blocked": false,
+                  "type": "contact"
+                },
+                "assignee": null,
+                "assignee_type": null,
+                "team": null,
+                "hmac_verified": false
+              },
+              "status": "open",
+              "custom_attributes": {},
+              "snoozed_until": null,
+              "unread_count": 1,
+              "first_reply_created_at": "2026-02-07T17:23:07.081Z",
+              "priority": null,
+              "waiting_since": 0,
+              "agent_last_seen_at": 1770568716,
+              "contact_last_seen_at": 0,
+              "last_activity_at": 1770569361,
+              "timestamp": 1770569361,
+              "created_at": 1770484986,
+              "updated_at": 1770569361.661027
+            },
+            "created_at": "2026-02-08T16:49:21.658Z",
+            "id": 3631,
+            "inbox": {
+              "id": 2,
+              "name": "Mané Garrincha"
+            },
+            "message_type": "incoming",
+            "private": false,
+            "sender": {
+              "account": {
+                "id": 1,
+                "name": "Sales Tec"
+              },
+              "additional_attributes": {
+                "avatar_url_hash": "a304b0aca2d35c4bef6f3f593479ee728abe7dfb4f8484405b52089c39d53932",
+                "last_avatar_sync_at": "2026-02-08T15:52:31Z"
+              },
+              "avatar": "https://chatsales-chatwoot.yvssrw.easypanel.host/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbzhDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4568e26d14ba052dde2572418b871f480d0993bb/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWZvdyIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--9ccc687fe4f869216e0e285ebdaea17d341b1b00/461842945_842712438027365_2758685753677227353_n.jpg",
+              "custom_attributes": {},
+              "email": null,
+              "id": 307,
+              "identifier": "553299009727@s.whatsapp.net",
+              "name": "Fabio",
+              "phone_number": "+553299009727",
+              "thumbnail": "https://chatsales-chatwoot.yvssrw.easypanel.host/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbzhDIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--4568e26d14ba052dde2572418b871f480d0993bb/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWZvdyIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--9ccc687fe4f869216e0e285ebdaea17d341b1b00/461842945_842712438027365_2758685753677227353_n.jpg",
+              "blocked": false
+            },
+            "source_id": "WAID:3EB0A1EEDB74CADED7AE6B",
+            "event": "message_created"
+          },
+          "webhookUrl": "https://chatsales-n8n.yvssrw.easypanel.host/webhook/253b1c3f-3b78-470f-acdc-20bc6b7ef0cc",
+          "executionMode": "production"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Filtra In ou Out going",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca se Contato Existe no Supabase": {
+      "main": [
+        [
+          {
+            "node": "True - Exists >> | False - Doesnt Exist > Create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "True - Exists >> | False - Doesnt Exist > Create": {
+      "main": [
+        [
+          {
+            "node": "Busca por Conversas",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gera Contact Id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca por Conversas": {
+      "main": [
+        [
+          {
+            "node": "Merge Conversas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cria Contatos no Supabase": {
+      "main": [
+        [
+          {
+            "node": "Gera Conversation ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cria Conversa": {
+      "main": [
+        [
+          {
+            "node": "Merge Conversas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Conversas": {
+      "main": [
+        [
+          {
+            "node": "Gera Message Id1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Text": {
+      "main": [
+        [
+          {
+            "node": "Converge Áudio e Texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gera Message Id1": {
+      "main": [
+        [
+          {
+            "node": "Checa por Attachments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Checa por Attachments": {
+      "main": [
+        [
+          {
+            "node": "Checa por Attachments1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Checa por Attachments1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Analyze image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Converge Áudio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording1": {
+      "main": [
+        [
+          {
+            "node": "Converge Áudio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Converge Áudio": {
+      "main": [
+        [
+          {
+            "node": "Converge Áudio e Texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Converge Áudio e Texto": {
+      "main": [
+        [
+          {
+            "node": "Cria Mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cria Mensagem": {
+      "main": [
+        [
+          {
+            "node": "Busca Bloqueio de Respostas da IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Get many rows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many rows in Supabase": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Enviar texto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar texto": {
+      "main": [
+        [
+          {
+            "node": "Mensagem enviada com sucesso?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtra In ou Out going": {
+      "main": [
+        [
+          {
+            "node": "Get a row",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Busca se Contato Existe no Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gera Message Id_AI2": {
+      "main": [
+        [
+          {
+            "node": "Cria AI Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gera Conversation ID": {
+      "main": [
+        [
+          {
+            "node": "Cria Conversa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a row": {
+      "main": [
+        [
+          {
+            "node": "Procura se é Mensagem da IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch3": {
+      "main": [
+        [],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gera Message Id2": {
+      "main": [
+        [
+          {
+            "node": "Busca se Contato Existe no Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca por Conversas1": {
+      "main": [
+        [
+          {
+            "node": "Cria Mensagem do Humano",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca se Contato Existe no Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Busca por Conversas1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Procura se é Mensagem da IA": {
+      "main": [
+        [
+          {
+            "node": "Switch3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gera Message Id2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cria Mensagem do Humano": {
+      "main": [
+        [
+          {
+            "node": "Busca por Trava de IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch4": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca Bloqueio de Respostas da IA": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gera Contact Id": {
+      "main": [
+        [
+          {
+            "node": "Cria Contatos no Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Switch4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status to Pending": {
+      "main": [
+        [
+          {
+            "node": "Atualiza Status no Supabase Pending",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status to open": {
+      "main": [
+        [
+          {
+            "node": "Atualiza Status no Supabase Open",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensagem enviada com sucesso?": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status to open",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca por Trava de IA": {
+      "main": [
+        [
+          {
+            "node": "Se Existe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Se Existe": {
+      "main": [
+        [
+          {
+            "node": "Se Existe Trava Ativa ou Não - Atualiza por 10 min",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cria Trava de IA por 10 min",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cria Trava de IA por 10 min": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Se Existe Trava Ativa ou Não - Atualiza por 10 min": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Set Status to open1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualiza Status no Supabase Pending": {
+      "main": [
+        [
+          {
+            "node": "Gera Message Id_AI2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualiza Status no Supabase Open": {
+      "main": [
+        [
+          {
+            "node": "Keep Status Open",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status to open1": {
+      "main": [
+        [
+          {
+            "node": "Atualiza Status no Supabase Open - msg humana",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Status to open2": {
+      "main": [
+        [
+          {
+            "node": "Atualiza Status no Supabase Open1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gera Message Id_AI": {
+      "main": [
+        [
+          {
+            "node": "Cria AI Message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Set Status to Pending",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set Status to open2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "4b548e92-da6c-41b0-874a-29b56f19b33e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b4551e3a213fbf00eea5f6e9031d2de2ce2ba0424d65a2e3883d436a19aace8f"
+  },
+  "id": "xm5mLCg6Zto9glRCKECLU",
+  "tags": []
+}

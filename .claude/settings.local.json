@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.ios.com.br)",
+      "WebFetch(domain:document-export.canva.com)",
+      "mcp__5bb9925c-71d3-478b-a252-cbfeff285cff__start-editing-transaction",
+      "mcp__5bb9925c-71d3-478b-a252-cbfeff285cff__upload-asset-from-url",
+      "Bash(gh repo:*)",
+      "Bash(git clone:*)"
+    ]
+  }
+}
